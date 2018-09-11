@@ -168,7 +168,7 @@ try:
             var2 = var2 + 1
             if response.status == 200:
                 var1 = var1 + 1
-                print "%s %s" % ( "\n\n<EasY_HaCk>" + host, G + "Admin page found!")
+                print "%s %s" % ( "\n\n<EasY_HaCk> " + host, G + "Admin page found!")
                 raw_input(W + "Press enter to continue scanning.\n")
             elif response.status == 404:
                 var2 = var2
@@ -196,7 +196,7 @@ try:
             var2 = var2 + 1
             if response.status == 200:
                 var1 = var1 + 1
-                print "%s %s" % ( "\n\n<EasY_HaCk>" + host, G + "Admin page found!")
+                print "%s %s" % ( "\n\n<EasY_HaCk> " + host, G + "Admin page found!")
                 raw_input(W + "Press enter to continue scanning...\n")
             elif response.status == 404:
                 var2 = var2
@@ -223,7 +223,7 @@ try:
             var2 = var2 + 1
             if response.status == 200:
                 var1 = var1 + 1
-                print "%s %s" % ( "\n\n<EasY_HaCk>" + host, G + "Admin page found!")
+                print "%s %s" % ( "\n\n<EasY_HaCk> " + host, G + "Admin page found!")
                 raw_input(W + "Press enter to continue scanning.\n")
             elif response.status == 404:
                 var2 = var2
@@ -250,7 +250,7 @@ try:
             var2 = var2 + 1
             if response.status == 200:
                 var1 = var1 + 1
-                print "%s %s" % ( "\n\n<EasY_HaCk>" + host, G + "Admin page found!")
+                print "%s %s" % ( "\n\n<EasY_HaCk> " + host, G + "Admin page found!")
                 raw_input(W + "Press enter to continue scanning.\n")
             elif response.status == 404:
                 var2 = var2
@@ -277,7 +277,7 @@ try:
             var2 = var2 + 1
             if response.status == 200:
                 var1 = var1 + 1
-                print "%s %s" % ( "\n\n<EasY_HaCk>" + host, G + "Admin page found!")
+                print "%s %s" % ( "\n\n<EasY_HaCk> " + host, G + "Admin page found!")
                 raw_input(W + "Press enter to continue scanning.\n")
             elif response.status == 404:
                 var2 = var2
@@ -304,7 +304,7 @@ try:
             var2 = var2 + 1
             if response.status == 200:
                 var1 = var1 + 1
-                print "%s %s" % ( "\n\n<EasY_HaCk>" + host, G + "Admin page found!")
+                print "%s %s" % ( "\n\n<EasY_HaCk> " + host, G + "Admin page found!")
                 raw_input(W + "Press enter to continue scanning.\n")
             elif response.status == 404:
                 var2 = var2
