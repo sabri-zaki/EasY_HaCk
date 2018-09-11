@@ -1,0 +1,18 @@
+***************
+*** 125,130 ****
+          summary = self.getField(fieldset, "summary[0]")
+          if summary:
+              self.useSummary(summary, False)
+  
+      def getFragment(self, frag):
+          stream = frag.getSubIStream()
+--- 125,133 ----
+          summary = self.getField(fieldset, "summary[0]")
+          if summary:
+              self.useSummary(summary, False)
++         table = self.getField(fieldset, "table1[0]")
++         if table:
++             self.useTable(table)
+  
+      def getFragment(self, frag):
+          stream = frag.getSubIStream()

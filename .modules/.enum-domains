@@ -1,0 +1,35 @@
+#!/bin/sh
+
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+clear
+echo $R
+figlet "              SMB "
+sleep 1
+figlet "           ENUM"
+sleep 1
+figlet "    DOMAINS"
+sleep 1
+echo ""
+
+echo -n "\033[0;36m[*]Target Url/IP~#: "
+read a
+if [ ! -z $a ]
+then
+echo "[*] Scannning..."
+nmap -p 445 --script smb-enum-domains $a
+echo -n "\033[1;31m[${W}press ENTRE to go back${R}]~#: " $zaki
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.smbscan
+else
+echo "\033[31m[${W}"!"${R}"] please Enter target  Url'\'IP${W}'!' " "
+sleep 5
+$PREFIX/share/EasY_HaCk/.modules/.smbscan
+fi
+
+

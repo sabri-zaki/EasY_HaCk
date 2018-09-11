@@ -1,0 +1,6 @@
+*.py[cod]
+output/
+.sqlmap_history
+traffic.txt
+*~
+.idea/

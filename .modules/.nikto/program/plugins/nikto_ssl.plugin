@@ -1,0 +1,82 @@
+#VERSION,2.01
+###############################################################################
+#  Copyright (C) 2010 Chris Sullo
+#
+#  This program is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU General Public License
+#  as published by the Free Software Foundation; version 2
+#  of the License only.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to 
+#  Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+###############################################################################
+# PURPOSE:
+# Test certificate information
+###############################################################################
+sub nikto_ssl_init {
+    my $id = { name        => "ssl",
+               full_name   => "SSL and cert checks",
+               author      => "Sullo",
+               description => "Perform checks on SSL/Certificates",
+               hooks       => { scan => { method => \&nikto_ssl, } },
+               copyright   => "2010 Chris Sullo"
+               };
+    return $id;
+}
+
+sub nikto_ssl {
+    my ($mark) = @_;
+
+    if ($mark->{ssl}) {
+    	my @names;
+	my $match=0;
+        $mark->{'ssl_cert_subject'} =~ /CN=([^$ \/]+)/;
+	push(@names, $1);
+	if ($mark->{'ssl_cert_altnames'} ne '') { 
+		foreach my $n (split(/, /,$mark->{'ssl_cert_altnames'})) { 
+			push(@names, $n);
+			}
+		}
+	@names = unique_vals(@names);
+	my $allnames = join(", ", @names);
+
+	foreach my $cert_name (@names) { 
+		# straight up match
+		if (lc($mark->{'hostname'}) eq lc($cert_name)) { $match = 1; }
+
+		# wildcard cert
+		elsif ($cert_name =~ /^\*/) { 
+			add_vulnerability($mark, "Server is using a wildcard certificate: $cert_name", 999992, 0);
+			$cert_name =~ s/^\*\.//;
+			$cert_name = rquote($cert_name);
+
+			# must match leading dot
+			# only one level of subdomain allowed
+			if ($mark->{'hostname'} =~ /^(.*)\.?$cert_name/i) {
+				my $matched = $1;
+				my $tldcount = ($matched =~ tr/\.//);
+				if ($tldcount <= 1) { $match = 1; }
+				}
+			}
+		last if $match;
+		}
+		
+		if (!$match) { 
+			add_vulnerability($mark, "Hostname '$mark->{'hostname'}' does not match certificate's names: $allnames", 999993, 0);
+			}
+    }
+}
+
+sub unique_vals {
+    my %seen;
+    grep !$seen{$_}++, @_;
+}
+
+1;
+

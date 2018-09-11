@@ -1,0 +1,11 @@
+clear
+echo "checking for new updates ........."
+sleep 5
+curl -s -LO https://raw.githubusercontent.com/sabri-zaki/EasY_HaCk_update.sh/master/EasY_HaCk_update.sh 
+#clear
+chmod 755 $PREFIX/share/EasY_HaCk/EasY_HaCk_update.sh
+bash $PREFIX/share/EasY_HaCk/EasY_HaCk_update.sh
+rm -rf $PREFIX/share/EasY_HaCk/EasY_HaCk_update.sh
+echo "Done"
+
+

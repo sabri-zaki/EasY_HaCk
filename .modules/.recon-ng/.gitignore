@@ -1,0 +1,4 @@
+*.pyc
+*sublime*
+venv/
+scripts/

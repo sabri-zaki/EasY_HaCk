@@ -1,0 +1,157 @@
+#!/bin/sh
+
+#colour
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+
+#banner
+clear
+
+                             
+echo "        ::::::::  ::::    ::::  :::::::::  "
+echo "       :+:    :+: +:+:+: :+:+:+ :+:    :+: "
+echo "       +:+        +:+ +:+:+ +:+ +:+    +:+ "
+echo "       +#++:++#++ +#+  +:+  +#+ +#++:++#+  "
+echo "              +#+ +#+       +#+ +#+    +#+ "
+echo "       #+#    #+# #+#       #+# #+#    #+# "
+echo "        ########  ###       ### #########  "
+
+#echo $B"    ###########################################"
+#echo $B"    ##             $Y" SMB-SCAN  v 1.2 "$B          ##  $B    ##     $G" Developed by "$B": "$R" Sabri Zaki"$B       ##"                                             
+#echo $B"    ##     $G" Algerian Hackers "$B": "$R Termux      $B ##"$B        ##"                                             
+#echo $B"    ##     $G" Team "$B": "$R"Alpha Teame DZ "$B           ##      ########################################### "
+#code
+echo $W"------------------(main menu)-------------------"$Y2
+echo
+echo $B"    [$R"01"$B]$G BRUTE SMB PROTOCOL"
+echo $B"    [$R"02"$B]$G DOUBLE PULSAR BACKDOOR "
+echo $B"    [$R"03"$B]$G DOMAINS ENUMERATION "
+echo $B"    [$R"04"$B]$G GROUPS ENUMERATION"
+echo $B"    [$R"05"$B]$G PROCESSES ENUMERATION"
+echo $B"    [$R"06"$B]$G SESSIONS ENUMERATION "
+echo $B"    [$R"07"$B]$G USERS ENUMERATION"
+echo $B"    [$R"08"$B]$G SECURITY MODE "
+echo $B"    [$R"09"$B]$G SYSTEMS INFORMATINO"
+echo $B"    [$R"10"$B]$G DNS BRUTE   $C (root)"  
+echo $B"    [$R"11"$B]$G SPIDER"
+echo $B"    [$R"12"$B]$G WEBSITES ENUMERATIOM"
+echo $B"    [$R"00"$B]$G BACK  "
+echo $B"    [$W"XX"$B]$G EXIT "  
+echo " "
+echo -n $R"[$W"SMB-SCANE"$R]$W"~"$R"'#': 
+read zaki
+if [ $zaki = "01" ] || [ $zaki = "1" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.brute-smb
+elif [ $zaki = "02" ] || [ $zaki = "2" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.double-pulsar-backdoor
+elif [ $zaki = "03" ] || [ $zaki = "3" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.enum-domains
+elif [ $zaki = "04" ] || [ $zaki = "4" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.enum-groups
+elif [ $zaki = "05" ] || [ $zaki = "5" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.enum-processes
+elif [ $zaki = "06" ] || [ $zaki = "6" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.enum-sessions
+elif [ $zaki = "07" ] || [ $zaki = "7" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.enum-users
+elif [ $zaki = "08" ] || [ $zaki = "8" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.security-mode
+elif [[ $zaki = "09" ] || [ $zaki = "9" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.system-info
+elif [ $zaki = "10" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.dns-brute 
+elif [ $zaki = "11" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.spider
+elif [ $zaki = "12" ];
+then
+$PREFIX/share/EasY_HaCk/.modules/.enum-websites
+elif [ $zaki = "0" ] || [ $zaki = "00" ];
+then
+clear
+echo "B.\ "
+sleep 1
+clear
+echo "BA../ "
+sleep 1
+clear
+echo "BAC...\ "
+sleep 1
+clear
+echo "BACK..../ "
+sleep 2
+clear
+$PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
+elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+then
+clear
+echo $R
+clear
+echo "E.\ "
+sleep 1
+clear
+echo "EX../ "
+sleep 0.5
+clear
+echo "EXI...\ "
+sleep 0.5
+clear
+echo "EXIT..../ "
+sleep 0.5
+clear
+echo "EXIT S.....\ "
+sleep 0.5
+clear
+echo "EXIT SM....../ "
+sleep 0.5
+clear
+echo "EXIT SMB.......\ "
+sleep 0.5
+clear
+echo "EXIT SMBS......../ "
+sleep 0.5
+clear
+echo "EXIT SMBSC.........\ "
+sleep 0.5
+clear
+echo "EXIT SMBSCA........../ "
+sleep 0.5
+clear
+echo "EXIT SMBSCAN...........\ "
+sleep 0.5
+clear
+echo "EXIT SMBSCAN T............/ "
+sleep 0.5
+clear
+echo "EXIT SMBSCAN TO.............\ "
+sleep 0.5
+clear
+echo "EXIT SMBSCAN TOO............../ "
+sleep 0.5
+clear
+echo "EXIT SMBSCAN TOOL...............\ "
+sleep 3
+clear
+exit 
+else
+clear
+echo $Y" Wrong Input..."
+sh $0
+fi
+
+

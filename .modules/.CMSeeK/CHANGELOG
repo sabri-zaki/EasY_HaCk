@@ -1,0 +1,233 @@
+Version 1.1.1 []
+
+Version 1.1.0 [28-08-2018]
+  - Added new CMS:
+    - Advanced Electron Forum
+    - Arc Forum
+    - AspNetForum
+    - Burning Board
+    - Beehive Forum
+    - Discourse
+    - Discuz!
+    - Flarum
+    - FluxBB
+    - FUDforum
+    - IPB Forum
+    - JForum
+    - MercuryBoard
+    - miniBB
+    - mvnForum
+    - MyBB
+    - mwForum
+    - myUPB
+    - NodeBB
+    - NoNonsense Forum
+    - Phorum
+    - PunBB
+    - SMF
+    - UBB.threads
+    - Vanilla
+    - uKnowva
+    - XenForo
+    - XMB
+    - YaBB
+    - YAF
+    - Yazd
+  - Version detection added for:
+    - Advanced Electron Forum
+    - AspNetForum
+    - Burning Board
+    - Beehive Forum
+    - Discourse
+    - Discuz!
+    - FUDforum
+    - JForum
+    - MercuryBoard
+    - miniBB
+    - mvnForum
+    - MyBB
+    - myUPB
+    - NodeBB
+    - PunBB
+    - SMF
+    - UBB.threads
+    - Vanilla
+    - uKnowva
+    - XMB
+    - YaBB
+    - YAF
+  - New detection methods added for:
+    - phpwind
+  - Fixed an issue with log (#28)
+Version 1.0.9 [21-08-2018]
+  - Added new CMS:
+    - PHP Nuke
+    - FlexCMP
+    - eZ Publish
+    - ExpressionEngine
+    - EPiServer
+    - e107
+    - DNN Platform
+    - phpBB
+    - DEDE CMS
+    - Danneo CMS
+    - Craft CMS
+    - CPG Dragonfly
+    - Cotonti
+    - Orchard CMS
+    - ContentBox
+    - Contentful
+    - Contensis CMS
+    - CMS CONTENIDO
+    - Contao
+    - Concrete5 CMS
+  - Version detection added for:
+    - FlexCMP
+    - Danneo CMS
+    - Contensis CMS
+    - CMS CONTENIDO
+    - Concrete5 CMS
+    - CMSimple
+    - BrowserCMS
+  - Ignore certificate error (#20)
+  - UA validation evasion added
+  - UI Revamped
+Version 1.0.8 [14-08-2018]
+  - Added new CMS:
+    - SilverStripe
+    - Silva CMS
+    - Serendipity
+    - SeamlessCMS
+    - Rock RMS
+    - Roadiz CMS
+    - RiteCMS
+    - RCMS
+    - Quick.Cms
+    - Pimcore
+    - Percussion CMS
+    - phpWind
+    - phpCMS
+    - PencilBlue
+    - Ophal
+    - Sitefinity
+    - OpenText WSM
+    - OpenCms
+    - Odoo
+    - Microsoft SharePoint
+    - October CMS
+    - Mura CMS
+    - Moto CMS
+    - Mono.net
+    - MODX
+    - Methode
+    - Mambo
+    - LiveStreet CMS
+    - LEPTON CMS
+    - HIPPO CMS
+    - Kooboo CMS
+    - Koken
+    - IndexHibit
+    - Webflow CMS
+    - Jalios JCMS
+    - ImpressPages CMS
+    - Hotaru CMS
+    - GravCMS
+    - GetSimple CMS
+    - Fork CMS
+  - Version detection added for:
+    - Serendipity
+    - SeamlessCMS
+    - Rock RMS
+    - RiteCMS
+    - Roadiz CMS
+    - phpWind
+    - Quick.Cms
+    - Ophal
+    - Sitefinity
+    - OpenText WSM
+    - OpenCms
+    - Microsoft SharePoint
+    - Mura CMS
+    - Kooboo CMS
+    - Koken
+    - Jimdo
+    - ImpressPages CMS
+  - New browser validation bypass added
+Version 1.0.7 [07-08-2018]
+  - Added new CMS:
+    - TiddlyWiki
+    - SULU
+    - Subrion CMS
+    - Squiz Matrix
+    - Spin CMS
+    - solodev
+    - sNews
+    - sitecore
+    - SIMsite
+    - Simplébo
+  - Version detection added for:
+    - sNews
+    - TiddlyWiki
+    - SULU
+    - Subrion CMS
+  - New detection method added for:
+    - Textpattern CMS
+  - WordPress DeepScan Updated:
+    - added path disclosure scan
+    - added theme zip check
+    - added check for user registration
+  - fixed some issues with directory
+  - fixed bruteforce modules
+  - fixed url handler function
+Version 1.0.6 [23-07-2018]
+  - added new CMSs:
+      - XOOPS
+      - Wolf CMS
+      - Wix.com
+      - WebGUI
+      - UMI.CMS
+      - ushahidi
+      - Tiki Wiki CMS Groupware
+      - WebsiteBaker CMS
+  - New detection methods added for:
+      - typ03
+      - WordPress
+      - Drupal
+      - Joomla
+  - Version detection added for
+      - XpressEngine
+      - WebGUI
+      - UMI.CMS
+  - added cms detection via robots.txt
+  - CMS detection via generator meta tag improved
+  - fixed all bruteforce modules (yet again)
+  - brutefocer now adds username to the list of passwords to try [issue #14]
+  - added (-l, --list) argument for scanning sites from file
+  - Other minor fixes and tweaks
+Version 1.0.5 [19-07-2018]
+  - version detection for drupal added
+  - fixed '/' error in url
+  - added a detection method for drupal
+  - Core updated to make it smaller and faster
+  - removed multiprocessing with multithreading now cmseek runs on almost all devices
+  - other minor fixes
+Version 1.0.4 [17-07-2018]
+  - added joomla deep scan and version detection
+  - minor core update
+  - removed some junk code from wordpress deepscan
+Version 1.0.3 [06-07-2018]
+  - clear-result argument added
+  - fixed all bruteforce modules
+Version 1.0.2 [06-07-2018]
+  - WordPress passive theme detection added
+  - WordPress passive plugins enumeration added
+  - Added Verbose, url, random-agnet, user-agent, help arguments
+  - Deep scan updated
+  - Version detect updated
+  - Minor code updates and bug fixes
+Version 1.0.1 [19-06-2018]
+  - Added Update option
+  - Added version switch
+  - some minor updates
+Version 1.0.0 [15-06-2018]
+  - Initial Beta release

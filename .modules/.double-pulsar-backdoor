@@ -1,0 +1,36 @@
+sush: <stdin>[33]: cat: 
+/data/data/com.termux/files/usr/share/EasY-HaCk/.modules/.enum-processes: No such 
+file or directory
+#!/bin/sh
+#color
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+
+clear
+echo $R
+echo "=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-="
+echo ""
+echo " Debeloped by : $W zaki-F "
+echo "$W Double Pulsar Bsckdoor Scanner"
+echo $R
+echo "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+echo -n "\033[0;32m[*] Target Url : "
+read zaki
+if [ ! -z $zaki ]
+then
+echo "[*] Scanning..."
+nmap -p 445 --script smb-double-pulsar-backdoor.nse $zaki
+echo -n "\033[1;31m[${W}press ENTRE to go back${R}]~#: " $ENTRE
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.smbscan
+else
+echo "\033[31m[${W}"!"${R}"] please Enter target  Url'\'IP${W}'!' " "
+sleep 5
+$PREFIX/share/EasY_HaCk/.modules/.smbscan
+fi
+

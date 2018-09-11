@@ -1,0 +1,40 @@
+Index: misc.py
+===================================================================
+--- misc.py	(revision 2947)
++++ misc.py	(working copy)
+@@ -125,6 +125,9 @@
+         summary = self.getField(fieldset, "summary[0]")
+         if summary:
+             self.useSummary(summary, False)
++        table = self.getField(fieldset, "table1[0]")
++        if table:
++            self.useTable(table)
+ 
+     def getFragment(self, frag):
+         stream = frag.getSubIStream()
+@@ -161,6 +164,13 @@
+         self.comment = "Encrypted: %s" % doc["FIB/fEncrypted"].value
+ 
+     @fault_tolerant
++    def useTable(self, table):
++        if 'SttbSavedBy' in table:
++            arr = list(table['SttbSavedBy'].array('string'))
++            for i in xrange(0, len(arr), 2):
++                self.revision_history = "Revision #%d: Author '%s', file '%s'"%(i//2, arr[i].value, arr[i+1].value)
++
++    @fault_tolerant
+     def useProperty(self, summary, property, is_doc_summary):
+         field = summary.getFieldByAddress(property["offset"].value*8)
+         if not field \
+Index: register.py
+===================================================================
+--- register.py	(revision 2986)
++++ register.py	(working copy)
+@@ -78,6 +78,7 @@
+         filter=DATETIME_FILTER, type=(datetime, date), conversion=setDatetime))
+     meta.register(Data("last_modification", 501, _("Last modification"), text_handler=humanDatetime,
+         filter=DATETIME_FILTER, type=(datetime, date), conversion=setDatetime))
++    meta.register(Data("revision_history", 502, _("Revision history"), type=unicode))
+     meta.register(Data("latitude", 510, _("Latitude"), type=float))
+     meta.register(Data("longitude", 511, _("Longitude"), type=float))
+     meta.register(Data("altitude", 511, _("Altitude"), type=float, text_handler=humanAltitude))

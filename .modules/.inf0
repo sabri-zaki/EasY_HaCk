@@ -1,0 +1,130 @@
+#!/bin/sh
+clear
+#colour
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+
+
+#code
+clear
+echo " "
+echo $G"  ██ ███    ██ ███████  █████ "
+echo $G"  ██ ████   ██ ██      ██  ████"
+echo $G"  ██ ██ ██  ██ █████   ██ ██ ██"
+echo $G"  ██ ██  ██ ██ ██      ████  ██"
+echo $G"  ██ ██   ████ ██$R Termux $G█████ Gathering by zaki"
+echo $Y2
+echo  "------------------(main menu)-------------------"
+echo
+echo $B"[$R"01"$B]$G Inf0ga-----------> em@il ghather "
+echo $B"[$R"02"$B]$G Nikto------------> web server scaner "
+echo $B"[$R"03"$B]$G Red hawk---------> inf0rmation gathering"
+echo $B"[$R"04"$B]$G Recon-ng---------> rec0nnaissance"
+echo $B"[$R"05"$B]$G The harvester----> subd0main-emails gather"
+echo $B"[$R"06"$B]$G Cms detection----> CMS detection"
+echo $B"[$R"07"$B]$G Metag0file-------> files gathering to0l" 
+echo $B"[$R"00"$B]$G BACK "  
+echo $B"[$W"XX"$B]$G EXIT "
+echo " "
+echo -n $R"[$W"Inf0rmation Gathering t00ls"$R]$W"~"$R"'#': 
+read zaki
+#Inf0ga
+if [ $zaki = "1" ] || [ $zaki = "01" ];
+then
+clear
+figlet -f small "           INF0GA"
+echo $C "Exemple $R[$W google.com$R ] "
+echo -n $R "Target or website$Y : " 
+read site
+python2 $PREFIX/share/EasY_HaCk/.modules/.Infoga/infoga.py --target $site --source all 
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#Nikto
+elif [ $zaki = "2" ] || [ $zaki = "02" ];
+then 
+echo
+clear
+figlet -f small "           NIKT0"
+echo $C "Exemple $R[$W google.com$R ] "
+echo -n $R "Target or website$Y : " 
+read site
+perl $PREFIX/share/EasY_HaCk/.modules/.nikto/program/nikto.pl -Tuning -Plugins -Userdbs -url $site -C all -port 80 -output $HOME/EasY_HaCk-results/nikto.txt
+echo $G"see EasY_HaCk folder for the$W nikto.txt$G output"
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#Red hawk
+elif [ $zaki = "3" ] || [ $zaki = "03" ];
+then 
+clear
+php $PREFIX/share/EasY_HaCk/.modules/.RED_HAWK/rhawk.php
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#Recon-ng
+elif [ $zaki = "4" ] || [ $zaki = "04" ];
+then 
+clear
+python2 $PREFIX/share/EasY_HaCk/.modules/.recon-ng/recon-ng --no-check 
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#The harvester
+elif [ $zaki = "5" ] || [ $zaki = "05" ];
+then 
+echo
+echo $C "Please input the target website "
+echo -n $R "Target or website$Y : " 
+read site
+python2 $PREFIX/share/EasY_HaCk/.modules/.theHarvester/theHarvester.py -d $site -b all -l 1000 -s 300 -f $HOME/EasY_HaCk-results/theHarvester-results.html
+echo $G"see EasY_HaCk folder for the$W theHarvester$G output if exist !"
+echo -n  $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#Cms detection
+elif [ $zaki = "6" ] || [ $zaki = "06" ];
+then 
+echo
+clear
+python3 $PREFIX/share/EasY_HaCk/.modules/.CMSeeK/cmseek.py
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE 
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#Metag0file
+elif [ $zaki = "7" ] || [ $zaki = "07" ];
+then 
+echo
+echo -n $R " Target or website$Y : " 
+read site
+python2 $PREFIX/share/EasY_HaCk/.modules/.metagoofil/metagoofil.py -d $site -t pdf,doc,xls,ppt,odp,ods,docx,xlsx,pptx -l 2000 -n 500 -o $HOME/EasY_HaCk-results/metagoofil -f $HOME/EasY_HaCk-results/metagoofil/metagoofil-results.html
+echo -n  $R"Press" ENTRE to back" "
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.inf0
+#Back 
+elif [ $zaki = "00" ] || [ $zaki = "0" ];
+then
+clear
+echo "EasY_HacK "
+sleep 1
+clear
+$PREFIX/share/EasY_HaCk/.modules/.web
+elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+then
+clear
+echo "by by (0_0)"
+sleep 1
+exit 
+else
+clear
+echo $Y" Wrong Input..."
+sleep 1
+sh $0
+fi
+#end
+
