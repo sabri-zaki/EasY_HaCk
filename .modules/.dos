@@ -61,7 +61,7 @@ clear
 echo $W"Let the Attack at least$Y2 1h$W to have good result "
 sleep 1
 echo -n $R"Put the Website to Attack$Y : " $G
-read sitr
+read site
 $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes $site 80
 echo -n $R"Press" ENTRE to back" " 
 read ENTRE
