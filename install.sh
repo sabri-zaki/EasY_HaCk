@@ -28,7 +28,7 @@ apt-get install git -y
 apt-get install hydra -y
 apt-get install python -y
 apt-get install python2 -y
-apt-get instsll php -y
+apt-get install php -y
 apt-get install nmap -y
 apt-get install apache2 -y 
 apt-get install cowsay -y
