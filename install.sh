@@ -59,6 +59,7 @@ mv -f $HOME/EasY_HaCk/ $PREFIX/share/
 gcc $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes.c -o xerxes 
 mv $PREFIX/share/EasY_HaCk/xerxes $PREFIX/share/EasY_HaCk/.modules/.xerxes/
 chmod +x $PREFIX/share/EasY_HaCk/*
+chmod +x $PREFIX/bin/EasY_HaCk
 chmod +x $PREFIX/share/EasY_HaCk/.modules/.*
 chmod +x $PREFIX/share/EasY_HaCk/.modules/.Infoga/*
 chmod +x $PREFIX/share/EasY_HaCk/.modules/.theHarvester/*
