@@ -24,7 +24,7 @@ figlet -f big "EasYHaCk"
 echo -e "                   $g"Alpha"$r"Team"$w"DZ"" 
 echo -e "$a              # # # # # # # # # # # # "
 echo -e "$a              #                     #"
-echo -e "$a              #    $r"EasY_HaCk  V1.2"$a   #"
+echo -e "$a              #    $r"EasY_HaCk  V2.0"$a   #"
 echo -e "$a              #                     #"
 echo -e "$a              # # # # # # # # # # # #"
 echo
@@ -43,8 +43,6 @@ sleep 0.5
 echo -e "$red --------------"
 sleep 0.1
 echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR "
-sleep 0.1
-#echo -e "$a      [$r"02"$a"]"$g CREATE WINDOWS PAYLOAD"
 sleep 0.1
 echo -e "$a      [$r"02"$a"]"$g INSTALL METASPLOIT"
 sleep 0.1
