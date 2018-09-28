@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
-# Hash Id ( EaSy HaCk  )
+# Hash Id ( EasY_HaCk  )
 # By Emad Fakhry
 
 N  = '\033[0m'    # normal
