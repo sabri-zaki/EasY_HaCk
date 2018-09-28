@@ -131,6 +131,7 @@ fi
 create_payload()
 {
 python2 $PREFIX/share/EasY_HaCk/.modules/.pay.py
+EasY_HaCk
 }
 
 install_ngrok()
