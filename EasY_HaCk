@@ -132,7 +132,7 @@ fi
 
 create_payload()
 {
-python2 $PREFIX/share/EasY_HaCk/.modules/.pay/pay2.py
+python2 $PREFIX/share/EasY_HaCk/.modules/.pay.py
 }
 
 install_ngrok()
