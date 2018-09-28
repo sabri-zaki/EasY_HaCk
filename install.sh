@@ -36,6 +36,7 @@ apt-get install ruby -y
 echo $W "Pleas accept........"
 sleep 3
 termux-setup-storage
+sleep 4
 mkdir /sdcard/EasY_HaCk
 mkdir $HOME/EasY_HaCk-results
 mkdir $PREFIX/share/apache2/default-site/htdocs/zaki
