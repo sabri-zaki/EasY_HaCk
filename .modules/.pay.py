@@ -16,13 +16,13 @@ def slowprint(text):
     for txt in text + "\n":
         sys.stdout.write(txt)
         sys.stdout.flush()
-        time.sleep(1. / 100)
+        time.sleep(4. / 100)
 def banner():
     import time
     print "\n"
     print "\033[1;34m[+]~\033[1;36mStarting Payload Maker Tool Now ... "
     print "\n"
-    time.sleep(1)
+    time.sleep(2)
     print "{}[*]~{}Started Now aT {}".format("\033[1;34m", "\033[1;32m", time.strftime("%X"))
     print ("""
 %s      ____              __                __
