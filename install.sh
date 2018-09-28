@@ -4,7 +4,7 @@ B='\033[0;34m'
 G='\033[1;32m'
 W='\033[1;37m'
 
-
+chmod +x $HOME/EasY_HaCk/*
 clear
 apt-get update -y
 clear
