@@ -138,6 +138,7 @@ $PREFIX/share/EasY_HaCk/.modules/.web
 elif [ $zaki = "8" ] || [ $zaki = "08" ];
 then 
 echo
+clear
 python $PREFIX/share/EasY_HaCk/.modules/.hash-id.py
 $PREFIX/share/EasY_HaCk/.modules/.web
 elif [ $zaki = "9" ] || [ $zaki = "09" ];
