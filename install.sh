@@ -55,7 +55,7 @@ rm -rf $HOME/EasY_HaCk/.modules/zaki.tar.gza*
 rm -rf $PREFIX/share/apache2/default-site/htdocs/index.html
 mv -f $HOME/EasY_HaCk/,modules/index.html Algeria.gif $PREFIX/share/apache2/default-site/htdocs/
 mv -f $HOME/EasY_HaCk/EasY_HaCk $PREFIX/bin/
-mv -f $HOME/EasY_HaCk/ $PREFIX/share/
+mv -f $HOME/EasY_HaCk $PREFIX/share/
 gcc $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes.c -o xerxes 
 mv $PREFIX/share/EasY_HaCk/xerxes $PREFIX/share/EasY_HaCk/.modules/.xerxes/
 chmod +x $PREFIX/share/EasY_HaCk/*
