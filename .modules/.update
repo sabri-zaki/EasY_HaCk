@@ -6,7 +6,9 @@ clear
 mv $HOME/EasY_HaCk_update.sh $PREFIX/share/EasY_HaCk/.modules/
 chmod 755 $PREFIX/share/EasY_HaCk/.modules/EasY_HaCk_update.sh
 bash $PREFIX/share/EasY_HaCk/.modules/EasY_HaCk_update.sh
+bash $PREFIX/share/EasY_HaCk/EasY_HaCk_update.sh
 rm -rf $PREFIX/share/EasY_HaCk/.modules/EasY_HaCk_update.sh
+rm -rf $PREFIX/share/EasY_HaCk/EasY_HaCk_update.sh
 echo "Done"
 
 
