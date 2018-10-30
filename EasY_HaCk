@@ -30,7 +30,7 @@ echo -e "$a              # # # # # # # # # # # #"
 echo
 echo -e "  $green Welcome to This Tool For Penetration Testing    "           
 echo -e "               Made by$yellow SABRI ZAKI "
-echo -e " $g Developers Team : | Doctor Virus | Emad Fakhry |   "
+echo -e " $g Developers Team : | Emad Fakhry | "
 echo " "
 echo -e "              $red Press ENTER to Continue"
 echo -e $yellow
