@@ -36,10 +36,9 @@ apt-get install ruby -y
 echo $W "Pleas accept........"
 sleep 3
 termux-setup-storage
-sleep 4
+sleep 6
 mkdir /sdcard/EasY_HaCk
 mkdir $HOME/EasY_HaCk-results
-mkdir $PREFIX/share/apache2/default-site/htdocs/zaki
 echo $W" Downloding start up .................."$G
 sleep 3
 echo " " $G
@@ -55,7 +54,7 @@ mv -v $HOME/zaki.txt $PREFIX/share/EasY_HaCk/.modules/
 rm -rf $HOME/EasY_HaCk/zaki.tar
 rm -rf $HOME/EasY_HaCk/.modules/zaki.tar.gza*
 rm -rf $PREFIX/share/apache2/default-site/htdocs/index.html
-mv -f $HOME/EasY_HaCk/,modules/index.html Algeria.gif $PREFIX/share/apache2/default-site/htdocs/
+#mv -f $HOME/EasY_HaCk/,modules/index.html Algeria.gif $PREFIX/share/apache2/default-site/htdocs/
 mv -f $HOME/EasY_HaCk/EasY_HaCk $PREFIX/bin/
 mv -f $HOME/EasY_HaCk $PREFIX/share/
 gcc $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes.c -o xerxes 
