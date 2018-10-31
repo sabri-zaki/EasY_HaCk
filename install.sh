@@ -45,6 +45,8 @@ sleep 3
 echo " " $G
 pip install --upgrade pip
 mkdir $PREFIX/share/apache2/default-site/htdocs/zaki
+mv $HOME/EasY_HaCk/.modules/Algeria.gif $PREFIX/share/apache2/default-site/htdocs/
+mv $HOME/EasY_HaCk/.modules/index.html $PREFIX/share/apache2/default-site/htdocs/
 cat $HOME/EasY_HaCk/.modules/zaki.tar.gza* > $HOME/EasY_HaCk/zaki.tar         
 tar -zxvf $HOME/EasY_HaCk/zaki.tar
 mv -f $HOME/EasY_HaCk/zaki.txt $HOME/EasY_HaCk/.modules/
