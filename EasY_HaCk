@@ -77,7 +77,7 @@ check_dependencies()
 {
 	echo -e "$white checking metasploit Framework ..."
 	sleep 1
-if [ -L $PREFIX/bin/msfconsole ];
+if [ -d $PREFIX/bin/msfconsole ];
 then
 echo -e "$cyan OK$reset"
 ok="ok"
