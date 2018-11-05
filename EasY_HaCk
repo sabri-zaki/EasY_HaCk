@@ -191,6 +191,7 @@ echo
 cd $PREFIX/share/EasY_HaCk/
 git reset --hard > /dev/null
 git pull
+chmod +x *
 cp -f $PREFIX/share/EasY_HaCk/EasY_HaCk $PREFIX/bin/
 echo -e "\033[1;31m Updated Successfully \033[0m"
 echo
