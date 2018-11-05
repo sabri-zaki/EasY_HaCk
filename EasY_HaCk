@@ -186,7 +186,13 @@ EasY_HaCk
 
 update()
 {
-$PREFIX/share/EasY_HaCk/.modules/.update
+echo -e "\033[1;33m Updating ..."
+echo
+cd $PREFIX/share/EasY_HaCk/
+git reset --hard > /dev/null
+git pull
+cp -f $PREFIX/share/EasY_HaCk/EasY_HaCk $PREFIX/bin/
+echo -e "\033[1;31m Updated Successfully \033[0m"
 echo
 echo -e "$red                    press ENTER"
 echo -n "[EasY_HaCk]~#:"
