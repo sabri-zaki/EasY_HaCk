@@ -89,5 +89,7 @@ python3 $PREFIX/share/EasY_HaCk/.modules/.slowloris/setup.py install
 clear
 figlet -f small "   DONE!"
 echo "Now Type in new terminal ————>  EasY_HaCk"
+sleep 3
+EasY_HaCk
 
 
