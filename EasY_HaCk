@@ -193,6 +193,8 @@ git reset --hard > /dev/null
 git pull
 chmod +x *
 cp -f $PREFIX/share/EasY_HaCk/EasY_HaCk $PREFIX/bin/
+echo
+echo
 echo -e "\033[1;31m Updated Successfully \033[0m"
 echo
 echo -e "$red                    press ENTER"
