@@ -50,7 +50,7 @@ read
 echo -n $R "MY INTERNAL IP$Y"~"$W"#"$Y":" "
 echo 
 clear
-ifconfig wlan0 | grep --color=auto inet 
+ifconfig wlan0 | grep --color=auto -o 192..........
 echo -n $R "            Press ENTER for EXTERNAL IP $Y"
 echo -n $R "                       else  ctrl+c to EXIT "
 read target
