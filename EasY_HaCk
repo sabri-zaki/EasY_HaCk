@@ -83,7 +83,7 @@ echo -e "$cyan OK$reset"
 ok="ok"
 else
 echo
-echo -e "$red please make sure metasploit is installed if not so please select 3 for metasploit."
+echo -e "$red please make sure metasploit is installed if not so please select 2 for metasploit."
 	     echo
 	    echo -e "$red                         $ENTER$reset"
 	    read tmp
