@@ -43,18 +43,21 @@ echo $W" Downloding start up .................."$G
 sleep 3
 echo " " $G
 pip install --upgrade pip
+pip install wordlist
 mkdir $PREFIX/share/apache2/default-site/htdocs/zaki
 mv $HOME/EasY_HaCk/.modules/Algeria.gif $PREFIX/share/apache2/default-site/htdocs/
 mv $HOME/EasY_HaCk/.modules/index.html $PREFIX/share/apache2/default-site/htdocs/
-cat $HOME/EasY_HaCk/.modules/zaki.tar.gza* > $HOME/EasY_HaCk/zaki.tar         
+cat $HOME/EasY_HaCk/.modules/zaki.tar.gza* > $HOME/EasY_HaCk/zaki.tar  
 tar -zxvf $HOME/EasY_HaCk/zaki.tar
+cd  $HOME/EasY_HaCk/
+rm -rf zaki.tar
+rm -rf zaki.tar.gza*
 mv -f $HOME/EasY_HaCk/zaki.txt $HOME/EasY_HaCk/.modules/
 mv -f zaki.txt $PREFIX/share/EasY_HaCk/.modules/
 mv -v $HOME/zaki.txt $PREFIX/share/EasY_HaCk/.modules/
-rm -rf $HOME/EasY_HaCk/zaki.tar
-rm -rf $HOME/EasY_HaCk/.modules/zaki.tar.gza*
 rm -rf $PREFIX/share/apache2/default-site/htdocs/index.html
-#mv -f $HOME/EasY_HaCk/,modules/index.html Algeria.gif $PREFIX/share/apache2/default-site/htdocs/
+rm -rf $HOME/EasY_HaCk/,modules/index.html 
+rm -rf $HOME/EasY_HaCk/,modules/Algeria.gif
 mv -f $HOME/EasY_HaCk/EasY_HaCk $PREFIX/bin/
 mv -f $HOME/EasY_HaCk $PREFIX/share/
 gcc $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes.c -o xerxes 
@@ -86,6 +89,7 @@ pip install PySocks
 sleep 3
 python3 $PREFIX/share/EasY_HaCk/.modules/.slowloris/setup.py build
 python3 $PREFIX/share/EasY_HaCk/.modules/.slowloris/setup.py install
+clear
 clear
 figlet -f small "   DONE!"
 echo "Now Type in new terminal ————>  EasY_HaCk"
