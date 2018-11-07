@@ -4,7 +4,7 @@ check=0
 check=1
 ok="ok"
 ENTER="press ENTER for main menu"
-#colours
+#colors
 w='\e[97m'
 g='\033[1;92m'
 r='\033[1;91m'
@@ -17,19 +17,23 @@ yellow='\033[1;33m'
 blue='\033[1;34m'
 purple='\033[1;35m'
 reset='\033[0m'
-
+G='\e[110m'
+G1='\e[101m'
+o='\033[0m'
+#banner
 sleep 0.5
 echo -e $yellow
 figlet -f big "EasYHaCk"
+
 echo -e "                   $g"Alpha"$r"Team"$w"DZ"" 
-echo -e "$a              # # # # # # # # # # # # "
-echo -e "$a              #                     #"
-echo -e "$a              #    $r"EasY_HaCk  V2.2"$a   #"
-echo -e "$a              #                     #"
+echo -e "$a              # # # # # # # # # # # #"
+echo -e "$a              #$G                     $o$a#"
+echo -e "$a              #$G    $r"EasY_HaCk  V2.2"$a   $o$a#"
+echo -e "$a              #$G                     $o$a#"
 echo -e "$a              # # # # # # # # # # # #"
 echo
-echo -e "  $green Welcome to This Tool For Penetration Testing    "           
-echo -e "               Made by$yellow SABRI ZAKI "
+echo -e "$G1$w   Welcome to This Tool For Penetration Testing    $o" 
+echo -e $o"$green               Made by$yellow SABRI ZAKI "$o
 echo -e " $g          Developers Team :  Emad Fakhry "
 echo " "
 echo -e "              $red Press ENTER to Continue"
@@ -42,23 +46,27 @@ echo -e "$blue THE MAIN MENU"
 sleep 0.5
 echo -e "$red --------------"
 sleep 0.1
-echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR "
+echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR"
 sleep 0.1
 echo -e "$a      [$r"02"$a"]"$g INSTALL METASPLOIT"
 sleep 0.1
-echo -e "$a      [$r"03"$a"]"$g INSTALL NGROK"
+echo -e "$a    🔒[$r"03"$a"]"$g BeeF INSTALL [$cyan Under Development ]"
 sleep 0.1
-echo -e "$a      [$r"04"$a"]"$g ADVANCE NMAP SCAN "
+echo -e "$a      [$r"04"$a"]"$g INSTALL NGROK "
 sleep 0.1
-echo -e "$a      [$r"05"$a"]"$g WEB-HACKS"
+echo -e "$a      [$r"05"$a"]"$g ADVANCE NMAP SCAN"
 sleep 0.1
-echo -e "$a      [$r"06"$a"]"$g MY SERVER"
+echo -e "$a      [$r"06"$a"]"$g WEB-HACKS"
 sleep 0.1
-echo -e "$a      [$r"07"$a"]"$g ABOUT"
+echo -e "$a      [$r"07"$a"]"$g PASSWORD CRACK"
 sleep 0.1
-echo -e "$a      [$r"08"$a"]"$g UPDATE ME"
+echo -e "$a      [$r"08"$a"]"$g MY SERVER"
 sleep 0.1
-echo -e "$a      [$r"09"$a"]"$g CONTACT ME"
+echo -e "$a      [$r"09"$a"]"$g ABOUT"
+sleep 0.1
+echo -e "$a      [$r"10"$a"]"$g UPDATE ME"
+sleep 0.1
+echo -e "$a      [$r"11"$a"]"$g CONTACT ME"
 sleep 0.1
 echo -e "$a      [$w"XX"$a"]"$g EXIT $reset"
 sleep 0.5
@@ -73,26 +81,26 @@ then
 	sleep 2
 EasY_HaCk
 fi
+
 check_dependencies()
 {
 	echo -e "$white checking metasploit Framework ..."
 	sleep 1
-if [ -d $PREFIX/bin/msfconsole ];
+if [ -e $PREFIX/bin/msfconsole ];
 then
 echo -e "$cyan OK$reset"
 ok="ok"
 else
 echo
 echo -e "$red please make sure metasploit is installed if not so please select 2 for metasploit."
-	     echo
-	    echo -e "$red                         $ENTER$reset"
-	    read tmp
-	    EasY_HaCk
-  fi
+ echo
+echo -e "$red                         $ENTER$reset"
+read tmp
+EasY_HaCk
+fi
 	  if [ $ok = "ok" ];
 	  then
-$PREFIX/bin/sed -i '3 a check=1' $PREFIX/bin/EasY_HaCk
-
+$PREFIX/bin/sed -i '2 a check=1' $PREFIX/bin/EasY_HaCk
 fi
 }
 
@@ -102,7 +110,7 @@ echo -e "$green it can take upto$red 10-15mins and also depends on your net spee
 sleep 1
 find . -type f -name metasploit-framework\* -exec rm {} \;
 if [ -e $PREFIX/bin/curl ]; then
-curl -LO https://raw.githubusercontent.com/Hax4us/Metasploit_termux/master/metasploit.sh
+curl -LO https://raw.githubusercontent.com/sabri-zaki/metasploit/master/metasploit.sh
 chmod +x metasploit.sh
 bash metasploit.sh
 echo
@@ -116,10 +124,9 @@ else
 	echo -e "$green it can take upto 10-15mins and also depends on your net speed"
 	sleep 1
 	find . -type f -name metasploit-framework\* -exec rm {} \;
-		curl -LO https://raw.githubusercontent.com/Hax4us/Metasploit_termux/master/
-metasploit.sh
-chmod +x metasploit.sh
-bash metasploit.sh
+	curl -LO  https://raw.githubusercontent.com/sabri-zaki/metasploit/master/metasploit.sh
+	chmod +x metasploit.sh
+	bash metasploit.sh
 echo
 echo -e "$red if you dont think , all were ok so try again with fast internet"
 	echo -e "$red                    $ENTER$reset"
@@ -202,6 +209,22 @@ echo -n "[EasY_HaCk]~#:"
 read tmp
 EasY_HaCk
 }
+
+password()
+{
+clear
+$PREFIX/share/EasY_HaCk/.modules/.password
+echo -e "$red                    press ENTER"
+echo -n "[EasY_HaCk]~#:"
+read tmp
+EasY_HaCk
+}
+
+beef()
+{
+EasY_HaCk
+}
+
 
 contact()
 {
@@ -334,19 +357,23 @@ case "$option" in
 		 ;;
 	2) install_metasploit
 		;;
-	3) install_ngrok
+	3) beef
 		;;
-	4) nmap
+	4) install_ngrok
 		;;
-	5) web_hacking
+	5) nmap
 		;;
-	6)  server
+	6) web_hacking
 		;;
-	7)  about
+	7) password
+		;;
+	8)  server
+		;;
+	9)  about
 		 ;;
-	8)  update
+	10)  update
 		 ;;
-	9) contact
+	11) contact
 		;;
 esac
 

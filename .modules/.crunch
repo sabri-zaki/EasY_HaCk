@@ -1,0 +1,82 @@
+#!/data/data/com.termux/files/usr/bin/sh
+clear
+
+#color
+
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+
+
+#variable
+bin=/data/data/com.termux/files/usr/bin/wordlist
+path=/data/data/com.termux/files/home/EasY_HaCk-results/
+
+
+#banner
+echo $R"                                  _     "
+echo $B"                                 | |    "
+echo $C"        ___ _ __ _   _ _ __   ___| |__  "
+echo $G"       / __| '__| | | | '_ \ / __| '_ \ "
+echo $W"      | (__| |  | |_| | | | | (__| | | |"
+echo $Y2"       \___|_|   \__,_|_| |_|\___|_| |_|"
+echo
+                                   
+
+#code
+if [ -e $bin ];then
+echo -n $W"put MINIMUM character$C [eg: 4]#:$W"
+read min
+echo
+echo -n $W"put MUXIMUM chracter$C [eg: 9]#:$W"
+read max
+echo
+echo -n $W"put the password file name #:"
+read name
+echo
+echo -n $W"put NUMBERS && CHARACTERS$C [eg: 12345abcd]#:$W"
+read input
+echo $R"wordlist generating prossess..........."
+wordlist -m $min -M $max -o ~/EasY_HaCk-results/password_list/$name.txt $input
+echo $W"Done"
+echo
+echo $W"check EasY_HaCk-results/password_list Folder"
+echo
+cd $path/password_list/
+echo $G"Your Wordlistes"$C
+echo
+ls | cat -n 
+echo
+echo -n  $R"Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.password
+else
+echo $W"pleas wait for checking crunch in you TERMUX..."
+sleep 3
+echo
+echo $R"crunch not found .........................❌"
+sleep 2
+echo
+echo $G"installing crunch ..."
+sleep 2
+echo
+pip install wordlist > /dev/null 2>&1
+mkdir -p $path/password_list
+fi
+if [ -e $bin ];then
+echo $W"Crunch was Successfully Installed... ✔ "
+sleep 5
+$PREFIX/share/EasY_HaCk/.modules/.crunch
+else
+echo $R"You dont have Internet"
+echo $R"You dont have Internet"
+echo $R"You dont have Internet"
+echo $R"You dont have Internet"
+sleep 3
+clear
+$PREFIX/share/EasY_HaCk/.modules/.password
+fi
