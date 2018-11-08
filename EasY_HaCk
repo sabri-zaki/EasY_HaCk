@@ -50,7 +50,7 @@ echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR"
 sleep 0.1
 echo -e "$a      [$r"02"$a"]"$g INSTALL METASPLOIT"
 sleep 0.1
-echo -e "$a    🔒[$r"03"$a"]"$g BeeF INSTALL [$cyan Under Development ]"
+echo -e "$a      [$r"03"$a"]"$g BeeF INSTALL "
 sleep 0.1
 echo -e "$a      [$r"04"$a"]"$g INSTALL NGROK "
 sleep 0.1
@@ -222,6 +222,8 @@ EasY_HaCk
 
 beef()
 {
+clear
+$PREFIX/share/EasY_HaCk/.modules/.beef.sh
 EasY_HaCk
 }
 
