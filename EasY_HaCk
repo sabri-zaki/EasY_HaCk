@@ -32,7 +32,7 @@ echo -e "$a              #$G    $r"EasY_HaCk  V3.1"$a   $o$a#"
 echo -e "$a              #$G                     $o$a#"
 echo -e "$a              # # # # # # # # # # # #"
 echo
-echo -e "$G1$w   Welcome to This Tool For Penetration Testing $o" 
+echo -e "  $G1$w Welcome to This Tool For Penetration Testing $o" 
 echo -e $o"$green               Made by$yellow SABRI ZAKI "$o
 echo -e " $g          Developers Team :  Emad Fakhry "
 echo " "
