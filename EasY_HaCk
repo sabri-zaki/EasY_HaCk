@@ -28,11 +28,11 @@ figlet -f big "EasYHaCk"
 echo -e "                   $g"Alpha"$r"Team"$w"DZ"" 
 echo -e "$a              # # # # # # # # # # # #"
 echo -e "$a              #$G                     $o$a#"
-echo -e "$a              #$G    $r"EasY_HaCk  V3.0"$a   $o$a#"
+echo -e "$a              #$G    $r"EasY_HaCk  V3.1"$a   $o$a#"
 echo -e "$a              #$G                     $o$a#"
 echo -e "$a              # # # # # # # # # # # #"
 echo
-echo -e "$G1$w   Welcome to This Tool For Penetration Testing $o" 
+echo -e "  $G1$w Welcome to This Tool For Penetration Testing $o" 
 echo -e $o"$green               Made by$yellow SABRI ZAKI "$o
 echo -e " $g          Developers Team :  Emad Fakhry "
 echo " "
@@ -50,7 +50,11 @@ echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR"
 sleep 0.1
 echo -e "$a      [$r"02"$a"]"$g INSTALL METASPLOIT"
 sleep 0.1
+<<<<<<< HEAD
 echo -e "$a      [$r"03"$a"]"$g BeeF INSTALL "
+=======
+echo -e "$a      [$r"03"$a"]"$g BeeF INSTALL [$cyan Under Development ]"
+>>>>>>> 450c955ba062985dbea5afa3653b4aeb54ea9d97
 sleep 0.1
 echo -e "$a      [$r"04"$a"]"$g INSTALL NGROK "
 sleep 0.1
