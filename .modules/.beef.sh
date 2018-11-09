@@ -32,6 +32,15 @@ pkg install dirmngr -y
 sleep 1
 apt-key adv --keyserver pool.sks-keyservers.net --recv 45F2964132545795
 sleep 1
+sleep 1
+rm -rf $PREFIX/etc/apt/sources.list 
+sleep 0.5
+touch $PREFIX/etc/apt/sources.list 
+sleep 0.5
+clear
+sleep 0.5
+echo "deb https://termux.net stable main" > $PREFIX/etc/apt/sources.list 
+sleep 1
 echo "deb https://termux-x11.ml x11 main" >> $PREFIX/etc/apt/sources.list 
 sleep 1
 echo "deb [trusted=yes] https://hax4us.github.io/termux-tools/ extras main" >> $PREFIX/etc/apt/sources.list
