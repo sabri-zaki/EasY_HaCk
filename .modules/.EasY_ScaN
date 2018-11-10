@@ -65,7 +65,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-nmap -T4 -A -v $target
+nmap -Pn -T4 -A -v $target
 echo -n $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -75,7 +75,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-sudo nmap -sS -sU -T4 -A -v $target
+sudo nmap -Pn -sS -sU -T4 -A -v $target
 echo -n $R" Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -85,7 +85,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-nmap -p- -T4 -A -v $target
+nmap -Pn -p- -T4 -A -v $target
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -95,7 +95,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-nmap -T4 -A -v -Pn $target
+nmap -Pn -T4 -A -v -Pn $target
 echo -n $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -105,7 +105,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-nmap -sn $target
+nmap -Pn -sn $target
 echo -n  $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -115,7 +115,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-nmap -T4 -F $target
+nmap -Pn -T4 -F $target
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -125,7 +125,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-sudo nmap -sV -T4 -O -F --version-all $target
+sudo nmap -Pn -sV -T4 -O -F --version-all $target
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -135,7 +135,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-sudo nmap -sn --traceroute $target
+sudo nmap -Pn -sn --traceroute $target
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -155,7 +155,7 @@ echo
 echo $C "Please input IP target or host "
 echo -n $R " IP Target or Host$Y : " 
 read target
-sudo nmap -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" $target
+sudo nmap -Pn -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --script "default or (discovery and safe)" $target
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
@@ -163,34 +163,34 @@ elif [ $zaki = "12" ];
 then
 clear
 echo "smbscan"
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ./ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ..\ "
 sleep 1
 clear
 echo "smbscan .../ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ....\ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ...../ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ......\ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ......./ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ........\ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ........./ "
-sleep 1
+sleep 0.3
 clear
 echo "smbscan ...........\ "
 echo " "
@@ -199,34 +199,34 @@ elif [ $zaki = "00" ] || [ $zaki = "0" ];
 then
 clear
 echo "EasY_HacK "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ./ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ..\ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK .../ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ....\ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ...../ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ......\ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ......./ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ........\ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ........./ "
-sleep 1
+sleep 0.3
 clear
 echo "EasY_HacK ...........\ "
 EasY_HaCk
@@ -234,16 +234,16 @@ elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] 
 then
 clear
 echo "$R E.\ "
-sleep 1
+sleep 0.3
 clear
 echo "$R EX../ "
-sleep 1
+sleep 0.3
 clear
 echo "$R EXI...\ "
-sleep 1
+sleep 0.3
 clear
 echo "$R EXIT..../ "
-sleep 1
+sleep 0.3
 exit 
 else
 clear

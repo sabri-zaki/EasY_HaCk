@@ -22,7 +22,7 @@ read p
 if [ ! -z $p ]
 then
 echo "[*] Scanning... "
-nmap -p 445 --script smb-enum-sessions $p
+nmap -Pn -p 445 --script smb-enum-sessions $p
 echo -n "\033[1;31m[${W}press ENTRE to go back${R}]~#: " $zaki
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.smbscan

@@ -36,7 +36,7 @@ echo $B"    [$R"05"$B]$G PROCESSES ENUMERATION"
 echo $B"    [$R"06"$B]$G SESSIONS ENUMERATION "
 echo $B"    [$R"07"$B]$G USERS ENUMERATION"
 echo $B"    [$R"08"$B]$G SECURITY MODE "
-echo $B"    [$R"09"$B]$G SYSTEMS INFORMATINO"
+echo $B"    [$R"09"$B]$G SYSTEMS INFORMATION"
 echo $B"    [$R"10"$B]$G DNS BRUTE   $C (root)"  
 echo $B"    [$R"11"$B]$G SPIDER"
 echo $B"    [$R"12"$B]$G WEBSITES ENUMERATIOM"
@@ -50,9 +50,11 @@ then
 $PREFIX/share/EasY_HaCk/.modules/.brute-smb
 elif [ $zaki = "02" ] || [ $zaki = "2" ];
 then
+clear
 $PREFIX/share/EasY_HaCk/.modules/.double-pulsar-backdoor
 elif [ $zaki = "03" ] || [ $zaki = "3" ];
 then
+clear
 $PREFIX/share/EasY_HaCk/.modules/.enum-domains
 elif [ $zaki = "04" ] || [ $zaki = "4" ];
 then

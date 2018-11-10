@@ -20,7 +20,7 @@ read asu
 if [ ! -z $asu ]
 then
 echo "[*] Scanning..."
-nmap -p 80 -sV --script=http-sitemap-generator $asu
+nmap -A -Pn -p 80 -sV --script=http-sitemap-generator $asu
 echo -n "\033[1;31m[${W}press ENTRE to go back${R}]~#: " $zaki
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.smbscan

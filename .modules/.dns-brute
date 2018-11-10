@@ -19,7 +19,7 @@ read anu
 if [ ! -z $anu ]
 then
 echo "\033[0;34m[*] Scanning..."
-sudo nmap -O -sV --open -O --script=dns-brute $anu
+sudo nmap -Pn -O -sV --open -O --script=dns-brute $anu
 echo -n "\033[1;31m[${W}press ENTRE to go back${R}]~#: " $zaki
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.smbscan

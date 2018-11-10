@@ -32,7 +32,6 @@ pkg install dirmngr -y
 sleep 1
 apt-key adv --keyserver pool.sks-keyservers.net --recv 45F2964132545795
 sleep 1
-sleep 1
 rm -rf $PREFIX/etc/apt/sources.list 
 sleep 0.5
 touch $PREFIX/etc/apt/sources.list 

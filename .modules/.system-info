@@ -23,7 +23,7 @@ read a
 if [ ! -z $a ] 
 then
 echo "[*] Scanning... "
-nmap -p445 --script smb-system-info $a
+nmap -Pn -p 445 --script smb-system-info $a
 echo -n "\033[1;31m[${W}press ENTRE to go back${R}]~#: " $zaki
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.smbscan
