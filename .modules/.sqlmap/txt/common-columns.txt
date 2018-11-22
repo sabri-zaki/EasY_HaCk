@@ -2601,3 +2601,7 @@ waktu
 # WebGoat
 cookie
 login_count
+
+# Misc
+
+u_pass

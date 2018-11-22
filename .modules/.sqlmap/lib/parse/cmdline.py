@@ -99,16 +99,16 @@ def cmdLineParser(argv=None):
                            help="Force usage of given HTTP method (e.g. PUT)")
 
         request.add_option("--data", dest="data",
-                           help="Data string to be sent through POST")
+                           help="Data string to be sent through POST (e.g. \"id=1\")")
 
         request.add_option("--param-del", dest="paramDel",
-                           help="Character used for splitting parameter values")
+                           help="Character used for splitting parameter values (e.g. &)")
 
         request.add_option("--cookie", dest="cookie",
-                           help="HTTP Cookie header value")
+                           help="HTTP Cookie header value (e.g. \"PHPSESSID=a8d127e..\")")
 
         request.add_option("--cookie-del", dest="cookieDel",
-                           help="Character used for splitting cookie values")
+                           help="Character used for splitting cookie values (e.g. ;)")
 
         request.add_option("--load-cookies", dest="loadCookies",
                            help="File containing cookies in Netscape/wget format")
@@ -144,7 +144,7 @@ def cmdLineParser(argv=None):
                            help="HTTP authentication PEM cert/private key file")
 
         request.add_option("--ignore-code", dest="ignoreCode", type="int",
-                           help="Ignore HTTP error code (e.g. 401)")
+                           help="Ignore (problematic) HTTP error code (e.g. 401)")
 
         request.add_option("--ignore-proxy", dest="ignoreProxy", action="store_true",
                            help="Ignore system default proxy settings")
@@ -207,7 +207,7 @@ def cmdLineParser(argv=None):
                            help="Parameter used to hold anti-CSRF token")
 
         request.add_option("--csrf-url", dest="csrfUrl",
-                           help="URL address to visit to extract anti-CSRF token")
+                           help="URL address to visit for extraction of anti-CSRF token")
 
         request.add_option("--force-ssl", dest="forceSSL", action="store_true",
                            help="Force usage of SSL/HTTPS")
@@ -617,7 +617,7 @@ def cmdLineParser(argv=None):
                                  help="Run host OS command(s) when SQL injection is found")
 
         miscellaneous.add_option("--answers", dest="answers",
-                                 help="Set question answers (e.g. \"quit=N,follow=N\")")
+                                 help="Set predefined answers (e.g. \"quit=N,follow=N\")")
 
         miscellaneous.add_option("--beep", dest="beep", action="store_true",
                                  help="Beep on question and/or when SQL injection is found")
@@ -626,7 +626,7 @@ def cmdLineParser(argv=None):
                                  help="Clean up the DBMS from sqlmap specific UDF and tables")
 
         miscellaneous.add_option("--dependencies", dest="dependencies", action="store_true",
-                                 help="Check for missing (non-core) sqlmap dependencies")
+                                 help="Check for missing (optional) sqlmap dependencies")
 
         miscellaneous.add_option("--disable-coloring", dest="disableColoring", action="store_true",
                                  help="Disable console output coloring")
@@ -635,7 +635,7 @@ def cmdLineParser(argv=None):
                                  help="Use Google dork results from specified page number")
 
         miscellaneous.add_option("--identify-waf", dest="identifyWaf", action="store_true",
-                                 help="Make a thorough testing for a WAF/IPS/IDS protection")
+                                 help="Make a thorough testing for a WAF/IPS protection")
 
         miscellaneous.add_option("--list-tampers", dest="listTampers", action="store_true",
                                  help="Display list of available tamper scripts")
@@ -650,7 +650,7 @@ def cmdLineParser(argv=None):
                                  help="Safely remove all content from sqlmap data directory")
 
         miscellaneous.add_option("--skip-waf", dest="skipWaf", action="store_true",
-                                 help="Skip heuristic detection of WAF/IPS/IDS protection")
+                                 help="Skip heuristic detection of WAF/IPS protection")
 
         miscellaneous.add_option("--smart", dest="smart", action="store_true",
                                  help="Conduct thorough tests only if positive heuristic(s)")
@@ -753,6 +753,7 @@ def cmdLineParser(argv=None):
         prompt = False
         advancedHelp = True
         extraHeaders = []
+        tamperIndex = None
 
         # Reference: https://stackoverflow.com/a/4012683 (Note: previously used "...sys.getfilesystemencoding() or UNICODE_ENCODING")
         for arg in argv:
@@ -824,6 +825,12 @@ def cmdLineParser(argv=None):
             elif re.search(r"\A-\w=.+", argv[i]):
                 dataToStdout("[!] potentially miswritten (illegal '=') short option detected ('%s')\n" % argv[i])
                 raise SystemExit
+            elif argv[i].startswith("--tamper"):
+                if tamperIndex is None:
+                    tamperIndex = i if '=' in argv[i] else (i + 1 if i + 1 < len(argv) and not argv[i + 1].startswith('-') else None)
+                else:
+                    argv[tamperIndex] = "%s,%s" % (argv[tamperIndex], argv[i].split('=')[1] if '=' in argv[i] else (argv[i + 1] if i + 1 < len(argv) and not argv[i + 1].startswith('-') else ""))
+                    argv[i] = ""
             elif argv[i] == "-H":
                 if i + 1 < len(argv):
                     extraHeaders.append(argv[i + 1])

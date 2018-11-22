@@ -5,7 +5,6 @@ Copyright (c) 2006-2018 sqlmap developers (http://sqlmap.org/)
 See the file 'LICENSE' for copying permission
 """
 
-import codecs
 import functools
 import os
 import re
@@ -45,6 +44,7 @@ from lib.core.enums import POST_HINT
 from lib.core.exception import SqlmapFilePathException
 from lib.core.exception import SqlmapGenericException
 from lib.core.exception import SqlmapMissingPrivileges
+from lib.core.exception import SqlmapNoneDataException
 from lib.core.exception import SqlmapSystemException
 from lib.core.exception import SqlmapUserQuitException
 from lib.core.option import _setDBMS
@@ -52,9 +52,11 @@ from lib.core.option import _setKnowledgeBaseAttributes
 from lib.core.option import _setAuthCred
 from lib.core.settings import ASTERISK_MARKER
 from lib.core.settings import CSRF_TOKEN_PARAMETER_INFIXES
+from lib.core.settings import CUSTOM_INJECTION_MARK_CHAR
 from lib.core.settings import DEFAULT_GET_POST_DELIMITER
 from lib.core.settings import HOST_ALIASES
 from lib.core.settings import ARRAY_LIKE_RECOGNITION_REGEX
+from lib.core.settings import INJECT_HERE_REGEX
 from lib.core.settings import JSON_RECOGNITION_REGEX
 from lib.core.settings import JSON_LIKE_RECOGNITION_REGEX
 from lib.core.settings import MULTIPART_RECOGNITION_REGEX
@@ -467,7 +469,13 @@ def _resumeDBMS():
     value = hashDBRetrieve(HASHDB_KEYS.DBMS)
 
     if not value:
-        return
+        if conf.offline:
+            errMsg = "unable to continue in offline mode "
+            errMsg += "because of lack of usable "
+            errMsg += "session data"
+            raise SqlmapNoneDataException(errMsg)
+        else:
+            return
 
     dbms = value.lower()
     dbmsVersion = [UNKNOWN_DBMS_VERSION]
@@ -693,6 +701,13 @@ def _createTargetDirs():
     _createFilesDir()
     _configureDumper()
 
+def _setAuxOptions():
+    """
+    Setup auxiliary (host-dependent) options
+    """
+
+    kb.aliasName = randomStr(seed=hash(conf.hostname or ""))
+
 def _restoreMergedOptions():
     """
     Restore merged options (command line, configuration file and default values)
@@ -739,6 +754,9 @@ def initTargetEnv():
             setattr(conf.data, UNENCODED_ORIGINAL_VALUE, original)
             kb.postSpaceToPlus = '+' in original
 
+    match = re.search(INJECT_HERE_REGEX, conf.data or "") or re.search(INJECT_HERE_REGEX, conf.url or "")
+    kb.customInjectionMark = match.group(0) if match else CUSTOM_INJECTION_MARK_CHAR
+
 def setupTargetEnv():
     _createTargetDirs()
     _setRequestParams()
@@ -746,3 +764,4 @@ def setupTargetEnv():
     _resumeHashDBValues()
     _setResultsFile()
     _setAuthCred()
+    _setAuxOptions()

@@ -19,7 +19,6 @@ from lib.core.common import isNoneValue
 from lib.core.common import isNumPosStrValue
 from lib.core.common import isTechniqueAvailable
 from lib.core.common import parsePasswordHash
-from lib.core.common import randomStr
 from lib.core.common import readInput
 from lib.core.common import unArrayizeValue
 from lib.core.convert import hexencode
@@ -187,13 +186,12 @@ class Users:
                 query += " OR ".join("%s = '%s'" % (condition, user) for user in sorted(users))
 
             if Backend.isDbms(DBMS.SYBASE):
-                randStr = randomStr()
                 getCurrentThreadData().disableStdOut = True
 
-                retVal = pivotDumpTable("(%s) AS %s" % (query, randStr), ['%s.name' % randStr, '%s.password' % randStr], blind=False)
+                retVal = pivotDumpTable("(%s) AS %s" % (query, kb.aliasName), ['%s.name' % kb.aliasName, '%s.password' % kb.aliasName], blind=False)
 
                 if retVal:
-                    for user, password in filterPairValues(zip(retVal[0]["%s.name" % randStr], retVal[0]["%s.password" % randStr])):
+                    for user, password in filterPairValues(zip(retVal[0]["%s.name" % kb.aliasName], retVal[0]["%s.password" % kb.aliasName])):
                         if user not in kb.data.cachedUsersPasswords:
                             kb.data.cachedUsersPasswords[user] = [password]
                         else:
@@ -228,13 +226,12 @@ class Users:
             if Backend.isDbms(DBMS.SYBASE):
                 getCurrentThreadData().disableStdOut = True
 
-                randStr = randomStr()
                 query = rootQuery.inband.query
 
-                retVal = pivotDumpTable("(%s) AS %s" % (query, randStr), ['%s.name' % randStr, '%s.password' % randStr], blind=True)
+                retVal = pivotDumpTable("(%s) AS %s" % (query, kb.aliasName), ['%s.name' % kb.aliasName, '%s.password' % kb.aliasName], blind=True)
 
                 if retVal:
-                    for user, password in filterPairValues(zip(retVal[0]["%s.name" % randStr], retVal[0]["%s.password" % randStr])):
+                    for user, password in filterPairValues(zip(retVal[0]["%s.name" % kb.aliasName], retVal[0]["%s.password" % kb.aliasName])):
                         password = "0x%s" % hexencode(password, conf.encoding).upper()
 
                         if user not in kb.data.cachedUsersPasswords:
@@ -288,6 +285,8 @@ class Users:
                                 query = rootQuery.blind.query % (user, index, user)
                         elif Backend.isDbms(DBMS.INFORMIX):
                             query = rootQuery.blind.query % (user,)
+                        elif Backend.isDbms(DBMS.HSQLDB):
+                            query = rootQuery.blind.query % (index, user)
                         else:
                             query = rootQuery.blind.query % (user, index)
 

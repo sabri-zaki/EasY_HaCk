@@ -43,6 +43,7 @@ from lib.core.settings import INFERENCE_MARKER
 from lib.core.settings import NULL
 from lib.core.settings import PAYLOAD_DELIMITER
 from lib.core.settings import REPLACEMENT_MARKER
+from lib.core.settings import SINGLE_QUOTE_MARKER
 from lib.core.settings import SLEEP_TIME_MARKER
 from lib.core.unescaper import unescaper
 
@@ -246,6 +247,9 @@ class Agent(object):
         else:
             query = kb.injection.prefix or prefix or ""
 
+            if "SELECT '[RANDSTR]'" in query:  # escaping of pre-WHERE prefixes
+                query = query.replace("'[RANDSTR]'", unescaper.escape(randomStr(), quote=False))
+
             if not (expression and expression[0] == ';') and not (query and query[-1] in ('(', ')') and expression and expression[0] in ('(', ')')) and not (query and query[-1] == '('):
                 query += " "
 
@@ -301,8 +305,7 @@ class Agent(object):
             ("[SPACE_REPLACE]", kb.chars.space),
             ("[DOLLAR_REPLACE]", kb.chars.dollar),
             ("[HASH_REPLACE]", kb.chars.hash_),
-            ("[GENERIC_SQL_COMMENT]", GENERIC_SQL_COMMENT),
-            ("[ORIGINAL]", origValue or "")
+            ("[GENERIC_SQL_COMMENT]", GENERIC_SQL_COMMENT)
         )
         payload = reduce(lambda x, y: x.replace(y[0], y[1]), replacements, payload)
 
@@ -312,9 +315,12 @@ class Agent(object):
         for _ in set(re.findall(r"(?i)\[RANDSTR(?:\d+)?\]", payload)):
             payload = payload.replace(_, randomStr())
 
-        if origValue is not None and "[ORIGVALUE]" in payload:
+        if origValue is not None:
             origValue = getUnicode(origValue)
-            payload = getUnicode(payload).replace("[ORIGVALUE]", origValue if origValue.isdigit() else unescaper.escape("'%s'" % origValue))
+            if "[ORIGVALUE]" in payload:
+                payload = getUnicode(payload).replace("[ORIGVALUE]", origValue if origValue.isdigit() else unescaper.escape("'%s'" % origValue))
+            if "[ORIGINAL]" in payload:
+                payload = getUnicode(payload).replace("[ORIGINAL]", origValue)
 
         if INFERENCE_MARKER in payload:
             if Backend.getIdentifiedDbms() is not None:
@@ -343,6 +349,7 @@ class Agent(object):
 
         if payload:
             payload = payload.replace(SLEEP_TIME_MARKER, str(conf.timeSec))
+            payload = payload.replace(SINGLE_QUOTE_MARKER, "'")
 
             for _ in set(re.findall(r"\[RANDNUM(?:\d+)?\]", payload, re.I)):
                 payload = payload.replace(_, str(randomInt()))
@@ -617,7 +624,7 @@ class Agent(object):
             elif fieldsNoSelect:
                 concatenatedQuery = "CONCAT('%s',%s,'%s')" % (kb.chars.start, concatenatedQuery, kb.chars.stop)
 
-        elif Backend.getIdentifiedDbms() in (DBMS.PGSQL, DBMS.ORACLE, DBMS.SQLITE, DBMS.DB2, DBMS.FIREBIRD, DBMS.HSQLDB):
+        elif Backend.getIdentifiedDbms() in (DBMS.PGSQL, DBMS.ORACLE, DBMS.SQLITE, DBMS.DB2, DBMS.FIREBIRD, DBMS.HSQLDB, DBMS.H2):
             if fieldsExists:
                 concatenatedQuery = concatenatedQuery.replace("SELECT ", "'%s'||" % kb.chars.start, 1)
                 concatenatedQuery += "||'%s'" % kb.chars.stop
@@ -816,7 +823,7 @@ class Agent(object):
             limitRegExp2 = None
 
         if (limitRegExp or limitRegExp2) or (Backend.getIdentifiedDbms() in (DBMS.MSSQL, DBMS.SYBASE) and topLimit):
-            if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.SQLITE):
+            if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.SQLITE, DBMS.H2):
                 limitGroupStart = queries[Backend.getIdentifiedDbms()].limitgroupstart.query
                 limitGroupStop = queries[Backend.getIdentifiedDbms()].limitgroupstop.query
 
@@ -906,7 +913,7 @@ class Agent(object):
         fromFrom = limitedQuery[fromIndex + 1:]
         orderBy = None
 
-        if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.SQLITE):
+        if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.SQLITE, DBMS.H2):
             limitStr = queries[Backend.getIdentifiedDbms()].limit.query % (num, 1)
             limitedQuery += " %s" % limitStr
 
@@ -1087,7 +1094,7 @@ class Agent(object):
         if conf.dumpWhere and query:
             prefix, suffix = query.split(" ORDER BY ") if " ORDER BY " in query else (query, "")
 
-            if "%s)" % conf.tbl.upper() in prefix.upper():
+            if conf.tbl and "%s)" % conf.tbl.upper() in prefix.upper():
                 prefix = re.sub(r"(?i)%s\)" % re.escape(conf.tbl), "%s WHERE %s)" % (conf.tbl, conf.dumpWhere), prefix)
             elif re.search(r"(?i)\bWHERE\b", prefix):
                 prefix += " AND %s" % conf.dumpWhere

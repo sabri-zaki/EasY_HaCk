@@ -10,6 +10,7 @@ from lib.core.data import conf
 from lib.core.data import kb
 from lib.core.dicts import DBMS_DICT
 from lib.core.enums import DBMS
+from lib.core.exception import SqlmapConnectionException
 from lib.core.settings import MSSQL_ALIASES
 from lib.core.settings import MYSQL_ALIASES
 from lib.core.settings import ORACLE_ALIASES
@@ -21,6 +22,7 @@ from lib.core.settings import MAXDB_ALIASES
 from lib.core.settings import SYBASE_ALIASES
 from lib.core.settings import DB2_ALIASES
 from lib.core.settings import HSQLDB_ALIASES
+from lib.core.settings import H2_ALIASES
 from lib.core.settings import INFORMIX_ALIASES
 from lib.utils.sqlalchemy import SQLAlchemy
 
@@ -46,6 +48,8 @@ from plugins.dbms.db2 import DB2Map
 from plugins.dbms.db2.connector import Connector as DB2Conn
 from plugins.dbms.hsqldb import HSQLDBMap
 from plugins.dbms.hsqldb.connector import Connector as HSQLDBConn
+from plugins.dbms.h2 import H2Map
+from plugins.dbms.h2.connector import Connector as H2Conn
 from plugins.dbms.informix import InformixMap
 from plugins.dbms.informix.connector import Connector as InformixConn
 
@@ -67,6 +71,7 @@ def setHandler():
         (DBMS.SYBASE, SYBASE_ALIASES, SybaseMap, SybaseConn),
         (DBMS.DB2, DB2_ALIASES, DB2Map, DB2Conn),
         (DBMS.HSQLDB, HSQLDB_ALIASES, HSQLDBMap, HSQLDBConn),
+        (DBMS.H2, H2_ALIASES, H2Map, H2Conn),
         (DBMS.INFORMIX, INFORMIX_ALIASES, InformixMap, InformixConn),
     ]
 
@@ -90,21 +95,32 @@ def setHandler():
         conf.dbmsConnector = Connector()
 
         if conf.direct:
+            exception = None
             dialect = DBMS_DICT[dbms][3]
 
             if dialect:
-                sqlalchemy = SQLAlchemy(dialect=dialect)
-                sqlalchemy.connect()
+                try:
+                    sqlalchemy = SQLAlchemy(dialect=dialect)
+                    sqlalchemy.connect()
 
-                if sqlalchemy.connector:
-                    conf.dbmsConnector = sqlalchemy
-                else:
-                    try:
-                        conf.dbmsConnector.connect()
-                    except NameError:
-                        pass
-            else:
-                conf.dbmsConnector.connect()
+                    if sqlalchemy.connector:
+                        conf.dbmsConnector = sqlalchemy
+                except Exception, ex:
+                    exception = ex
+
+            if not dialect or exception:
+                try:
+                    conf.dbmsConnector.connect()
+                except Exception, ex:
+                    if exception:
+                        raise exception
+                    else:
+                        if not isinstance(ex, NameError):
+                            raise
+                        else:
+                            msg = "support for direct connection to '%s' is not available. " % dbms
+                            msg += "Please rerun with '--dependencies'"
+                            raise SqlmapConnectionException(msg)
 
         if conf.forceDbms == dbms or handler.checkDbms():
             if kb.resolutionDbms:

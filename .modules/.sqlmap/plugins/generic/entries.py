@@ -67,7 +67,7 @@ class Entries:
             conf.db = self.getCurrentDb()
 
         elif conf.db is not None:
-            if Backend.getIdentifiedDbms() in (DBMS.ORACLE, DBMS.DB2, DBMS.HSQLDB):
+            if Backend.getIdentifiedDbms() in (DBMS.ORACLE, DBMS.DB2, DBMS.HSQLDB, DBMS.H2):
                 conf.db = conf.db.upper()
 
             if ',' in conf.db:
@@ -83,7 +83,7 @@ class Entries:
         conf.db = safeSQLIdentificatorNaming(conf.db)
 
         if conf.tbl:
-            if Backend.getIdentifiedDbms() in (DBMS.ORACLE, DBMS.DB2, DBMS.HSQLDB):
+            if Backend.getIdentifiedDbms() in (DBMS.ORACLE, DBMS.DB2, DBMS.HSQLDB, DBMS.H2):
                 conf.tbl = conf.tbl.upper()
 
             tblList = conf.tbl.split(',')
@@ -129,10 +129,7 @@ class Entries:
                 else:
                     kb.dumpTable = "%s.%s" % (conf.db, tbl)
 
-                if not safeSQLIdentificatorNaming(conf.db) in kb.data.cachedColumns \
-                   or safeSQLIdentificatorNaming(tbl, True) not in \
-                   kb.data.cachedColumns[safeSQLIdentificatorNaming(conf.db)] \
-                   or not kb.data.cachedColumns[safeSQLIdentificatorNaming(conf.db)][safeSQLIdentificatorNaming(tbl, True)]:
+                if safeSQLIdentificatorNaming(conf.db) not in kb.data.cachedColumns or safeSQLIdentificatorNaming(tbl, True) not in kb.data.cachedColumns[safeSQLIdentificatorNaming(conf.db)] or not kb.data.cachedColumns[safeSQLIdentificatorNaming(conf.db)][safeSQLIdentificatorNaming(tbl, True)]:
                     warnMsg = "unable to enumerate the columns for table "
                     warnMsg += "'%s' in database" % unsafeSQLIdentificatorNaming(tbl)
                     warnMsg += " '%s'" % unsafeSQLIdentificatorNaming(conf.db)
@@ -229,7 +226,7 @@ class Entries:
                                     entries = zip(*[entries[colName] for colName in colList])
                         else:
                             query = rootQuery.inband.query % (colString, conf.db, tbl)
-                    elif Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.HSQLDB):
+                    elif Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.HSQLDB, DBMS.H2):
                         query = rootQuery.inband.query % (colString, conf.db, tbl, prioritySortColumns(colList)[0])
                     else:
                         query = rootQuery.inband.query % (colString, conf.db, tbl)
@@ -402,7 +399,7 @@ class Entries:
                                     if column not in entries:
                                         entries[column] = BigArray()
 
-                                    if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.HSQLDB):
+                                    if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.PGSQL, DBMS.HSQLDB, DBMS.H2):
                                         query = rootQuery.blind.query % (agent.preprocessField(tbl, column), conf.db, conf.tbl, sorted(colList, key=len)[0], index)
                                     elif Backend.getIdentifiedDbms() in (DBMS.ORACLE, DBMS.DB2):
                                         query = rootQuery.blind.query % (agent.preprocessField(tbl, column), tbl.upper() if not conf.db else ("%s.%s" % (conf.db.upper(), tbl.upper())), index)

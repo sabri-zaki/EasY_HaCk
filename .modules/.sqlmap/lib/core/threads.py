@@ -92,10 +92,10 @@ def exceptionHandledFunction(threadFunction, silent=False):
         kb.threadException = True
         raise
     except Exception, ex:
-        if not silent:
+        if not silent and kb.get("threadContinue"):
             logger.error("thread %s: %s" % (threading.currentThread().getName(), ex.message))
 
-            if conf.verbose > 1:
+            if conf.get("verbose") > 1:
                 traceback.print_exc()
 
 def setDaemon(thread):
@@ -189,7 +189,7 @@ def runThreads(numThreads, threadFunction, cleanupFunction=None, forwardExceptio
         kb.threadException = True
         logger.error("thread %s: %s" % (threading.currentThread().getName(), ex.message))
 
-        if conf.verbose > 1:
+        if conf.get("verbose") > 1:
             traceback.print_exc()
 
     except:

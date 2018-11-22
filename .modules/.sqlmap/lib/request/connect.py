@@ -16,6 +16,7 @@ import string
 import struct
 import time
 import traceback
+import urllib
 import urllib2
 import urlparse
 
@@ -68,6 +69,7 @@ from lib.core.dicts import POST_HINT_CONTENT_TYPES
 from lib.core.enums import ADJUST_TIME_DELAY
 from lib.core.enums import AUTH_TYPE
 from lib.core.enums import CUSTOM_LOGGING
+from lib.core.enums import HINT
 from lib.core.enums import HTTP_HEADER
 from lib.core.enums import HTTPMETHOD
 from lib.core.enums import NULLCONNECTION
@@ -97,6 +99,7 @@ from lib.core.settings import MAX_CONSECUTIVE_CONNECTION_ERRORS
 from lib.core.settings import MAX_MURPHY_SLEEP_TIME
 from lib.core.settings import META_REFRESH_REGEX
 from lib.core.settings import MIN_TIME_RESPONSES
+from lib.core.settings import IDS_WAF_CHECK_PAYLOAD
 from lib.core.settings import IS_WIN
 from lib.core.settings import LARGE_CHUNK_TRIM_MARKER
 from lib.core.settings import PAYLOAD_DELIMITER
@@ -588,7 +591,7 @@ class Connect(object):
             threadData.lastHTTPError = (threadData.lastRequestUID, code, status)
             kb.httpErrorCodes[code] = kb.httpErrorCodes.get(code, 0) + 1
 
-            responseMsg += "[#%d] (%d %s):\r\n" % (threadData.lastRequestUID, code, status)
+            responseMsg += "[#%d] (%s %s):\r\n" % (threadData.lastRequestUID, code, status)
 
             if responseHeaders:
                 logHeaders = "\r\n".join(["%s: %s" % (getUnicode(key.capitalize() if isinstance(key, basestring) else key), getUnicode(value)) for (key, value) in responseHeaders.items()])
@@ -647,7 +650,7 @@ class Connect(object):
                 warnMsg = "connection was forcibly closed by the target URL"
             elif "timed out" in tbMsg:
                 if kb.testMode and kb.testType not in (None, PAYLOAD.TECHNIQUE.TIME, PAYLOAD.TECHNIQUE.STACKED):
-                    singleTimeWarnMessage("there is a possibility that the target (or WAF/IPS/IDS) is dropping 'suspicious' requests")
+                    singleTimeWarnMessage("there is a possibility that the target (or WAF/IPS) is dropping 'suspicious' requests")
                     kb.droppingRequests = True
                 warnMsg = "connection timed out to the target URL"
             elif "Connection reset" in tbMsg:
@@ -656,7 +659,7 @@ class Connect(object):
                     conf.disablePrecon = True
 
                 if kb.testMode:
-                    singleTimeWarnMessage("there is a possibility that the target (or WAF/IPS/IDS) is resetting 'suspicious' requests")
+                    singleTimeWarnMessage("there is a possibility that the target (or WAF/IPS) is resetting 'suspicious' requests")
                     kb.droppingRequests = True
                 warnMsg = "connection reset to the target URL"
             elif "URLError" in tbMsg or "error" in tbMsg:
@@ -747,7 +750,7 @@ class Connect(object):
 
             responseMsg += "[#%d] (%d %s):\r\n" % (threadData.lastRequestUID, conn.code, status)
         else:
-            responseMsg += "[#%d] (%d %s):\r\n" % (threadData.lastRequestUID, code, status)
+            responseMsg += "[#%d] (%s %s):\r\n" % (threadData.lastRequestUID, code, status)
 
         if responseHeaders:
             logHeaders = "\r\n".join(["%s: %s" % (getUnicode(key.capitalize() if isinstance(key, basestring) else key), getUnicode(value)) for (key, value) in responseHeaders.items()])
@@ -814,10 +817,14 @@ class Connect(object):
                 conf.httpHeaders.append((HTTP_HEADER.CONTENT_TYPE, contentType))
 
         if payload:
+            delimiter = conf.paramDel or (DEFAULT_GET_POST_DELIMITER if place != PLACE.COOKIE else DEFAULT_COOKIE_DELIMITER)
+
             if not disableTampering and kb.tamperFunctions:
                 for function in kb.tamperFunctions:
+                    hints = {}
+
                     try:
-                        payload = function(payload=payload, headers=auxHeaders)
+                        payload = function(payload=payload, headers=auxHeaders, delimiter=delimiter, hints=hints)
                     except Exception, ex:
                         errMsg = "error occurred while running tamper "
                         errMsg += "function '%s' ('%s')" % (function.func_name, getSafeExString(ex))
@@ -829,6 +836,18 @@ class Connect(object):
                         raise SqlmapValueException(errMsg)
 
                 value = agent.replacePayload(value, payload)
+
+                if hints:
+                    if HINT.APPEND in hints:
+                        value = "%s%s%s" % (value, delimiter, hints[HINT.APPEND])
+
+                    if HINT.PREPEND in hints:
+                        if place == PLACE.URI:
+                            match = re.search(r"\w+\s*=\s*%s" % PAYLOAD_DELIMITER, value) or re.search(r"[^?%s/]=\s*%s" % (re.escape(delimiter), PAYLOAD_DELIMITER), value)
+                            if match:
+                                value = value.replace(match.group(0), "%s%s%s" % (hints[HINT.PREPEND], delimiter, match.group(0)))
+                        else:
+                            value = "%s%s%s" % (hints[HINT.PREPEND], delimiter, value)
 
             logger.log(CUSTOM_LOGGING.PAYLOAD, safecharencode(payload.replace('\\', BOUNDARY_BACKSLASH_MARKER)).replace(BOUNDARY_BACKSLASH_MARKER, '\\'))
 
@@ -938,7 +957,7 @@ class Connect(object):
                 retVal = paramString
                 match = re.search(r"%s=[^&]*" % re.escape(parameter), paramString)
                 if match:
-                    retVal = re.sub(re.escape(match.group(0)), "%s=%s" % (parameter, newValue), paramString)
+                    retVal = re.sub(re.escape(match.group(0)), ("%s=%s" % (parameter, newValue)).replace('\\', r'\\'), paramString)
                 else:
                     match = re.search(r"(%s[\"']:[\"'])([^\"']+)" % re.escape(parameter), paramString)
                     if match:
@@ -946,14 +965,26 @@ class Connect(object):
                 return retVal
 
             page, headers, code = Connect.getPage(url=conf.csrfUrl or conf.url, data=conf.data if conf.csrfUrl == conf.url else None, method=conf.method if conf.csrfUrl == conf.url else None, cookie=conf.parameters.get(PLACE.COOKIE), direct=True, silent=True, ua=conf.parameters.get(PLACE.USER_AGENT), referer=conf.parameters.get(PLACE.REFERER), host=conf.parameters.get(PLACE.HOST))
-            token = extractRegexResult(r"(?i)<input[^>]+\bname=[\"']?%s[\"']?[^>]*\bvalue=(?P<result>(\"([^\"]+)|'([^']+)|([^ >]+)))" % re.escape(conf.csrfToken), page or "")
+            token = extractRegexResult(r"(?i)<input[^>]+\bname=[\"']?%s\b[^>]*\bvalue=[\"']?(?P<result>[^>'\"]*)" % re.escape(conf.csrfToken), page or "")
 
             if not token:
-                token = extractRegexResult(r"(?i)<input[^>]+\bvalue=(?P<result>(\"([^\"]+)|'([^']+)|([^ >]+)))[^>]+\bname=[\"']?%s[\"']?" % re.escape(conf.csrfToken), page or "")
+                token = extractRegexResult(r"(?i)<input[^>]+\bvalue=[\"']?(?P<result>[^>'\"]*)[\"']?[^>]*\bname=[\"']?%s\b" % re.escape(conf.csrfToken), page or "")
 
                 if not token:
                     match = re.search(r"%s[\"']:[\"']([^\"']+)" % re.escape(conf.csrfToken), page or "")
                     token = match.group(1) if match else None
+
+                    if not token:
+                        token = extractRegexResult(r"\b%s\s*[:=]\s*(?P<result>\w+)" % re.escape(conf.csrfToken), str(headers))
+
+                        if not token:
+                            token = extractRegexResult(r"\b%s\s*=\s*['\"]?(?P<result>[^;'\"]+)" % re.escape(conf.csrfToken), page or "")
+
+                            if token:
+                                match = re.search(r"String\.fromCharCode\(([\d+, ]+)\)", token)
+
+                                if match:
+                                    token = "".join(chr(int(_)) for _ in match.group(1).replace(' ', "").split(','))
 
             if not token:
                 if conf.csrfUrl != conf.url and code == httplib.OK:
@@ -1233,13 +1264,20 @@ class Connect(object):
                 warnMsg = "site returned insanely large response"
                 if kb.testMode:
                     warnMsg += " in testing phase. This is a common "
-                    warnMsg += "behavior in custom WAF/IPS/IDS solutions"
+                    warnMsg += "behavior in custom WAF/IPS solutions"
                 singleTimeWarnMessage(warnMsg)
 
         if conf.secondUrl:
             page, headers, code = Connect.getPage(url=conf.secondUrl, cookie=cookie, ua=ua, silent=silent, auxHeaders=auxHeaders, response=response, raise404=False, ignoreTimeout=timeBasedCompare, refreshing=True)
-        elif kb.secondReq:
-            page, headers, code = Connect.getPage(url=kb.secondReq[0], post=kb.secondReq[2], method=kb.secondReq[1], cookie=kb.secondReq[3], silent=silent, auxHeaders=dict(auxHeaders, **dict(kb.secondReq[4])), response=response, raise404=False, ignoreTimeout=timeBasedCompare, refreshing=True)
+        elif kb.secondReq and IDS_WAF_CHECK_PAYLOAD not in urllib.unquote(value or ""):
+            def _(value):
+                if kb.customInjectionMark in (value or ""):
+                    if payload is None:
+                        value = value.replace(kb.customInjectionMark, "")
+                    else:
+                        value = re.sub(r"\w*%s" % re.escape(kb.customInjectionMark), payload, value)
+                return value
+            page, headers, code = Connect.getPage(url=_(kb.secondReq[0]), post=_(kb.secondReq[2]), method=kb.secondReq[1], cookie=kb.secondReq[3], silent=silent, auxHeaders=dict(auxHeaders, **dict(kb.secondReq[4])), response=response, raise404=False, ignoreTimeout=timeBasedCompare, refreshing=True)
 
         threadData.lastQueryDuration = calculateDeltaSeconds(start)
         threadData.lastPage = page

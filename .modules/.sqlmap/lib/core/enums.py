@@ -43,6 +43,7 @@ class DBMS:
     SQLITE = "SQLite"
     SYBASE = "Sybase"
     HSQLDB = "HSQLDB"
+    H2 = "H2"
     INFORMIX = "Informix"
 
 class DBMS_DIRECTORY_NAME:
@@ -57,6 +58,7 @@ class DBMS_DIRECTORY_NAME:
     SQLITE = "sqlite"
     SYBASE = "sybase"
     HSQLDB = "hsqldb"
+    H2 = "h2"
     INFORMIX = "informix"
 
 class CUSTOM_LOGGING:
@@ -256,6 +258,7 @@ class PAYLOAD:
         3: "LIKE single quoted string",
         4: "Double quoted string",
         5: "LIKE double quoted string",
+        6: "Identifier (e.g. column name)",
     }
 
     RISK = {
@@ -275,6 +278,7 @@ class PAYLOAD:
         6: "TOP",
         7: "Table name",
         8: "Column name",
+        9: "Pre-WHERE (non-query)",
     }
 
     class METHOD:
@@ -374,3 +378,7 @@ class TIMEOUT_STATE:
     NORMAL = 0
     EXCEPTION = 1
     TIMEOUT = 2
+
+class HINT:
+    PREPEND = 0
+    APPEND = 1

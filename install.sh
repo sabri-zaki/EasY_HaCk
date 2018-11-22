@@ -56,10 +56,12 @@ mv -f $HOME/EasY_HaCk/zaki.txt $HOME/EasY_HaCk/.modules/
 mv -f zaki.txt $PREFIX/share/EasY_HaCk/.modules/
 mv -v $HOME/zaki.txt $PREFIX/share/EasY_HaCk/.modules/
 rm -rf $PREFIX/share/apache2/default-site/htdocs/index.html
-rm -rf $HOME/EasY_HaCk/,modules/index.html 
-rm -rf $HOME/EasY_HaCk/,modules/Algeria.gif
+rm -rf $HOME/EasY_HaCk/.modules/index.html 
+rm -rf $HOME/EasY_HaCk/.modules/Algeria.gif
 mv -f $HOME/EasY_HaCk/EasY_HaCk $PREFIX/bin/
-mv -f $HOME/EasY_HaCk $PREFIX/share/
+mv $HOME/EasY_HaCk $PREFIX/share/
+rm -rf $HOME/EasY_HaCk
+clear
 gcc $PREFIX/share/EasY_HaCk/.modules/.xerxes/xerxes.c -o xerxes 
 mv $PREFIX/share/EasY_HaCk/xerxes $PREFIX/share/EasY_HaCk/.modules/.xerxes/
 chmod +x $PREFIX/share/EasY_HaCk/*
@@ -82,12 +84,16 @@ chmod +x $PREFIX/share/EasY_HaCk/.modules/.Hash*
 sleep 3
 clear
 pip install -r $PREFIX/share/EasY_HaCk/.modules/.Infoga/requirements.txt
+clear
 sleep 3
 pip2 install -r $PREFIX/share/EasY_HaCk/.modules/.recon-ng/REQUIREMENTS
+clear
 sleep 3
 pip install PySocks
+clear
 sleep 3
 python3 $PREFIX/share/EasY_HaCk/.modules/.slowloris/setup.py build
+clear
 python3 $PREFIX/share/EasY_HaCk/.modules/.slowloris/setup.py install
 clear
 clear

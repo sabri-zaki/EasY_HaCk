@@ -645,7 +645,7 @@ def paramToDict(place, parameters=None):
                                                     current[key] = "%s%s" % (getUnicode(value).lower(), BOUNDED_INJECTION_MARKER)
                                                 else:
                                                     current[key] = "%s%s" % (value, BOUNDED_INJECTION_MARKER)
-                                                candidates["%s (%s)" % (parameter, key)] = re.sub(r"\b(%s\s*=\s*)%s" % (re.escape(parameter), re.escape(testableParameters[parameter])), r"\g<1>%s" % json.dumps(deserialized), parameters)
+                                                candidates["%s (%s)" % (parameter, key)] = re.sub(r"\b(%s\s*=\s*)%s" % (re.escape(parameter), re.escape(testableParameters[parameter])), r"\g<1>%s" % json.dumps(deserialized, separators=(',', ':') if ", " not in testableParameters[parameter] else None), parameters)
                                                 current[key] = original
 
                                 deserialized = json.loads(testableParameters[parameter])
@@ -899,7 +899,7 @@ def clearColors(message):
 
     retVal = message
 
-    if message:
+    if isinstance(message, str):
         retVal = re.sub(r"\x1b\[[\d;]+m", "", message)
 
     return retVal
@@ -923,7 +923,7 @@ def dataToStdout(data, forceOutput=False, bold=False, content_type=None, status=
 
             try:
                 if conf.get("api"):
-                    sys.stdout.write(message, status, content_type)
+                    sys.stdout.write(clearColors(message), status, content_type)
                 else:
                     sys.stdout.write(setColor(message, bold=bold))
 
@@ -1165,6 +1165,9 @@ def getHeader(headers, key):
 def checkFile(filename, raiseOnError=True):
     """
     Checks for file existence and readability
+
+    >>> checkFile(__file__)
+    True
     """
 
     valid = True
@@ -1175,7 +1178,7 @@ def checkFile(filename, raiseOnError=True):
     try:
         if filename is None or not os.path.isfile(filename):
             valid = False
-    except UnicodeError:
+    except:
         valid = False
 
     if valid:
@@ -1195,7 +1198,7 @@ def banner():
     This function prints sqlmap banner with its version
     """
 
-    if not any(_ in sys.argv for _ in ("--version", "--api")):
+    if not any(_ in sys.argv for _ in ("--version", "--api")) and not conf.get("disableBanner"):
         _ = BANNER
 
         if not getattr(LOGGER_HANDLER, "is_tty", False) or "--disable-coloring" in sys.argv:
@@ -1404,8 +1407,10 @@ def parseTargetDirect():
                     __import__("pyodbc")
                 elif dbmsName == DBMS.FIREBIRD:
                     __import__("kinterbasdb")
+            except (SqlmapSyntaxException, SqlmapMissingDependence):
+                raise
             except:
-                if _sqlalchemy and data[3] in _sqlalchemy.dialects.__all__:
+                if _sqlalchemy and data[3] and any(_ in _sqlalchemy.dialects.__all__ for _ in (data[3], data[3].split('+')[0])):
                     pass
                 else:
                     errMsg = "sqlmap requires '%s' third-party library " % data[1]
@@ -1647,6 +1652,9 @@ def parseUnionPage(page):
 def parseFilePaths(page):
     """
     Detects (possible) absolute system paths inside the provided page content
+
+    >>> _ = "/var/www/html/index.php"; parseFilePaths("<html>Error occurred at line 207 of: %s<br>Please contact your administrator</html>" % _); _ in kb.absFilePaths
+    True
     """
 
     if page:
@@ -2039,6 +2047,9 @@ def parseXmlFile(xmlFile, handler):
 def getSQLSnippet(dbms, sfile, **variables):
     """
     Returns content of SQL snippet located inside 'procs/' directory
+
+    >>> 'RECONFIGURE' in getSQLSnippet(DBMS.MSSQL, "activate_sp_oacreate")
+    True
     """
 
     if sfile.endswith('.sql') and os.path.exists(sfile):
@@ -2078,9 +2089,12 @@ def getSQLSnippet(dbms, sfile, **variables):
 
     return retVal
 
-def readCachedFileContent(filename, mode='rb'):
+def readCachedFileContent(filename, mode="rb"):
     """
     Cached reading of file content (avoiding multiple same file reading)
+
+    >>> "readCachedFileContent" in readCachedFileContent(__file__)
+    True
     """
 
     if filename not in kb.cache.content:
@@ -2137,6 +2151,9 @@ def average(values):
 def calculateDeltaSeconds(start):
     """
     Returns elapsed time from start till now
+
+    >>> calculateDeltaSeconds(0) > 1151721660
+    True
     """
 
     return time.time() - start
@@ -2144,6 +2161,9 @@ def calculateDeltaSeconds(start):
 def initCommonOutputs():
     """
     Initializes dictionary containing common output values used by "good samaritan" feature
+
+    >>> initCommonOutputs(); "information_schema" in kb.commonOutputs["Databases"]
+    True
     """
 
     kb.commonOutputs = {}
@@ -3351,6 +3371,9 @@ def unhandledExceptionMessage():
 def getLatestRevision():
     """
     Retrieves latest revision from the offical repository
+
+    >>> from lib.core.settings import VERSION; getLatestRevision() == VERSION
+    True
     """
 
     retVal = None
@@ -3460,6 +3483,9 @@ def maskSensitiveData(msg):
     for match in re.finditer(r"(?i)[ -]-(u|url|data|cookie)( |=)(.*?)(?= -?-[a-z]|\Z)", retVal):
         retVal = retVal.replace(match.group(3), '*' * len(match.group(3)))
 
+    # Fail-safe substitution
+    retVal = re.sub(r"(?i)\bhttps?://[^ ]+", lambda match: '*' * len(match.group(0)), retVal)
+
     if getpass.getuser():
         retVal = re.sub(r"(?i)\b%s\b" % re.escape(getpass.getuser()), '*' * len(getpass.getuser()), retVal)
 
@@ -3521,7 +3547,7 @@ def removeReflectiveValues(content, payload, suppressWarning=False):
                 return value
 
             payload = getUnicode(urldecode(payload.replace(PAYLOAD_DELIMITER, ""), convall=True))
-            regex = _(filterStringValue(payload, r"[A-Za-z0-9]", REFLECTED_REPLACEMENT_REGEX.encode("string-escape")))
+            regex = _(filterStringValue(payload, r"[A-Za-z0-9]", REFLECTED_REPLACEMENT_REGEX.encode("string_escape")))
 
             if regex != payload:
                 if all(part.lower() in content.lower() for part in filter(None, regex.split(REFLECTED_REPLACEMENT_REGEX))[1:]):  # fast optimization check
@@ -3628,7 +3654,7 @@ def safeSQLIdentificatorNaming(name, isTable=False):
 
             if Backend.getIdentifiedDbms() in (DBMS.MYSQL, DBMS.ACCESS):
                 retVal = "`%s`" % retVal
-            elif Backend.getIdentifiedDbms() in (DBMS.PGSQL, DBMS.DB2, DBMS.SQLITE, DBMS.INFORMIX, DBMS.HSQLDB):
+            elif Backend.getIdentifiedDbms() in (DBMS.PGSQL, DBMS.DB2, DBMS.SQLITE, DBMS.HSQLDB, DBMS.H2, DBMS.INFORMIX):
                 retVal = "\"%s\"" % retVal
             elif Backend.getIdentifiedDbms() in (DBMS.ORACLE,):
                 retVal = "\"%s\"" % retVal.upper()
@@ -4149,6 +4175,9 @@ def checkSystemEncoding():
 def evaluateCode(code, variables=None):
     """
     Executes given python code given in a string form
+
+    >>> _ = {}; evaluateCode("a = 1; b = 2; c = a", _); _["c"]
+    1
     """
 
     try:
@@ -4202,6 +4231,9 @@ def incrementCounter(technique):
 def getCounter(technique):
     """
     Returns query counter for a given technique
+
+    >>> resetCounter(PAYLOAD.TECHNIQUE.STACKED); incrementCounter(PAYLOAD.TECHNIQUE.STACKED); getCounter(PAYLOAD.TECHNIQUE.STACKED)
+    1
     """
 
     return kb.counters.get(technique, 0)
@@ -4248,7 +4280,7 @@ def decodeHexValue(value, raw=False):
                         retVal = retVal.decode("utf-16-le")
                     except UnicodeDecodeError:
                         pass
-                elif Backend.isDbms(DBMS.HSQLDB):
+                elif Backend.getIdentifiedDbms() in (DBMS.HSQLDB, DBMS.H2):
                     try:
                         retVal = retVal.decode("utf-16-be")
                     except UnicodeDecodeError:
@@ -4441,6 +4473,9 @@ def zeroDepthSearch(expression, value):
     """
     Searches occurrences of value inside expression at 0-depth level
     regarding the parentheses
+
+    >>> _ = "SELECT (SELECT id FROM users WHERE 2>1) AS result FROM DUAL"; _[zeroDepthSearch(_, "FROM")[0]:]
+    'FROM DUAL'
     """
 
     retVal = []
@@ -4476,7 +4511,7 @@ def pollProcess(process, suppress_errors=False):
     Checks for process status (prints . if still running)
     """
 
-    while True:
+    while process:
         dataToStdout(".")
         time.sleep(1)
 
@@ -4697,16 +4732,39 @@ def getSafeExString(ex, encoding=None):
         retVal = ex.message
     elif getattr(ex, "msg", None):
         retVal = ex.msg
+    elif isinstance(ex, (list, tuple)) and len(ex) > 1 and isinstance(ex[1], basestring):
+        retVal = ex[1]
 
     return getUnicode(retVal or "", encoding=encoding).strip()
 
 def safeVariableNaming(value):
+    """
+    Returns escaped safe-representation of a given variable name that can be used in Python evaluated code
+
+    >>> safeVariableNaming("foo bar")
+    'foo__SAFE__20bar'
+    """
+
     return re.sub(r"[^\w]", lambda match: "%s%02x" % (SAFE_VARIABLE_MARKER, ord(match.group(0))), value)
 
 def unsafeVariableNaming(value):
+    """
+    Returns unescaped safe-representation of a given variable name
+
+    >>> unsafeVariableNaming("foo__SAFE__20bar")
+    'foo bar'
+    """
+
     return re.sub(r"%s([0-9a-f]{2})" % SAFE_VARIABLE_MARKER, lambda match: match.group(1).decode("hex"), value)
 
 def firstNotNone(*args):
+    """
+    Returns first not-None value from a given list of arguments
+
+    >>> firstNotNone(None, None, 1, 2, 3)
+    1
+    """
+
     retVal = None
 
     for _ in args:

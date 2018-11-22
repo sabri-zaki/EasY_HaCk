@@ -565,6 +565,9 @@ Efrain Torres, <et(at)metasploit.com>
 * for helping out to improve the Metasploit Framework sqlmap auxiliary module and for committing it on the Metasploit official subversion repository
 * for his great Metasploit WMAP Framework
 
+Jennifer Torres, <jtorresf42(at)gmail.com>
+* for contributing a tamper script luanginx.py
+
 Sandro Tosi, <matrixhasu(at)gmail.com>
 * for helping to create sqlmap Debian package correctly
 
@@ -597,6 +600,7 @@ Carlos Gabriel Vergara, <carlosgabrielvergara(at)gmail.com>
 
 Patrick Webster, <patrick(at)aushack.com>
 * for suggesting an enhancement
+* for donating to sqlmap development (from OSI.Security)
 
 Ed Williams, <ed.williams(at)ngssecure.com>
 * for suggesting a minor enhancement

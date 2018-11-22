@@ -13,9 +13,7 @@ import os
 import re
 import subprocess
 import sys
-import urllib
 import urllib2
-import urlparse
 
 sys.dont_write_bytecode = True
 
@@ -109,7 +107,7 @@ def main():
             continue
 
         if function(get_page):
-            print colorize("[!] WAF/IPS/IDS identified as '%s'" % product)
+            print colorize("[!] WAF/IPS identified as '%s'" % product)
             found = True
 
     if not found:

@@ -56,9 +56,11 @@ from lib.core.exception import SqlmapNoneDataException
 from lib.core.exception import SqlmapNotVulnerableException
 from lib.core.exception import SqlmapSilentQuitException
 from lib.core.exception import SqlmapSkipTargetException
+from lib.core.exception import SqlmapSystemException
 from lib.core.exception import SqlmapValueException
 from lib.core.exception import SqlmapUserQuitException
 from lib.core.settings import ASP_NET_CONTROL_REGEX
+from lib.core.settings import CSRF_TOKEN_PARAMETER_INFIXES
 from lib.core.settings import DEFAULT_GET_POST_DELIMITER
 from lib.core.settings import EMPTY_FORM_FIELDS_REGEX
 from lib.core.settings import IGNORE_PARAMETERS
@@ -243,16 +245,20 @@ def _saveToResultsFile():
 
         results[key].extend(injection.data.keys())
 
-    for key, value in results.items():
-        place, parameter, notes = key
-        line = "%s,%s,%s,%s,%s%s" % (safeCSValue(kb.originalUrls.get(conf.url) or conf.url), place, parameter, "".join(techniques[_][0].upper() for _ in sorted(value)), notes, os.linesep)
-        conf.resultsFP.write(line)
+    try:
+        for key, value in results.items():
+            place, parameter, notes = key
+            line = "%s,%s,%s,%s,%s%s" % (safeCSValue(kb.originalUrls.get(conf.url) or conf.url), place, parameter, "".join(techniques[_][0].upper() for _ in sorted(value)), notes, os.linesep)
+            conf.resultsFP.write(line)
 
-    if not results:
-        line = "%s,,,,%s" % (conf.url, os.linesep)
-        conf.resultsFP.write(line)
+        if not results:
+            line = "%s,,,,%s" % (conf.url, os.linesep)
+            conf.resultsFP.write(line)
 
-    conf.resultsFP.flush()
+        conf.resultsFP.flush()
+    except IOError, ex:
+        errMsg = "unable to write to the results file '%s' ('%s'). " % (conf.resultsFilename, getSafeExString(ex))
+        raise SqlmapSystemException(errMsg)
 
 @stackedmethod
 def start():
@@ -505,7 +511,7 @@ def start():
                             logger.info(infoMsg)
 
                         # Ignore session-like parameters for --level < 4
-                        elif conf.level < 4 and (parameter.upper() in IGNORE_PARAMETERS or parameter.upper().startswith(GOOGLE_ANALYTICS_COOKIE_PREFIX)):
+                        elif conf.level < 4 and (parameter.upper() in IGNORE_PARAMETERS or any(_ in parameter.lower() for _ in CSRF_TOKEN_PARAMETER_INFIXES) or parameter.upper().startswith(GOOGLE_ANALYTICS_COOKIE_PREFIX)):
                             testSqlInj = False
 
                             infoMsg = "ignoring %s parameter '%s'" % (paramType, parameter)
@@ -524,7 +530,7 @@ def start():
 
                                     testSqlInj = False
                             else:
-                                infoMsg = "%s parameter '%s' is dynamic" % (paramType, parameter)
+                                infoMsg = "%s parameter '%s' appears to be dynamic" % (paramType, parameter)
                                 logger.info(infoMsg)
 
                         kb.testedParams.add(paramKey)

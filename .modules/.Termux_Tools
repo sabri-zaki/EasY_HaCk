@@ -1,0 +1,21 @@
+#!/bin/sh
+
+dir=/data/data/com.termux/files/home
+echo
+echo "[01]-[Metasploit-framwork]   [11]-[Shellphish]"
+echo "[02]-[Beer-framwork]         [12]-[Weeman]"
+echo "[03]-[Kali-nethunter]        [13]-[Ngrok]"
+echo "[04]-[Ubuntu]                [14]-[Osif]"
+echo "[05]-[Optiva-Framework]      [15]-[Hydra]"
+echo "[06]-[Routersploit]          [16]-[Tmux-Bunch-v2.4]"
+echo "[07]-[Aircrack-ng]           [17]-[Wascan]"
+echo "[08]-[Payload5]              [18]-[Setoolkit]"
+echo "[09]-[Spammer-grab]          [19]-[Getsploit]" 
+echo "[10]-[Socialfish]            [20]-[Termux-sudo]"
+echo
+echo "              [21]-[Termux-Theme]"
+echo "              [22]-[Instahack]"
+echo "              [23]-[Sqlmap]"
+echo "               "
+echo -n "EasY_HaCk: "
+echo
