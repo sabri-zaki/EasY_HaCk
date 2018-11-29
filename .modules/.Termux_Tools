@@ -1,0 +1,608 @@
+#!/bin/sh
+clear
+#colour
+R='\033[1;31m'
+B='\033[0;34m'
+C='\033[0;36m'
+G='\033[1;32m'
+W='\033[1;37m'
+Y='\033[0;33m'
+Y2='\033[1;33m'
+
+#variables
+dir=/data/data/com.termux/files/home
+kali=/data/data/com.termux/files/home/kali-fs
+kali2=/data/data/com.termux/files/home/kali-arm64
+kali3=/data/data/com.termux/files/home/kali-armhf
+ubu=/data/data/com.termux/files/home/ubuntu-*
+AIR=/data/data/com.termux/files/usr/bin/aircrack-ng
+E=/data/data/com.termux/files/usr/share/EasY_HaCk/.modules
+
+clear
+echo
+echo $R"       ████████╗   ██████   ██████    ██     "
+echo $B"       ╚══██╔══╝  ██    ██ ██    ██   ██     "
+echo $C"          ██║     ██    ██ ██    ██   ██      "
+echo $Y"          ██║     ██    ██ ██    ██   ██     "
+echo $W"          ██║      ██████   ██████    ███████ "
+echo "          ╚═╝                     "
+echo $R"[$G"01"$R]$C"-"$R["$W"Metasploit$C"-"$W"framwork"$R]   $R[$G"11"$R]$C"-"$R["$W"Shellphish$R]"
+echo $R"[$G"02"$R]$C"-"$R["$W"Beer$C"-"$W"framwork"$R]         $R[$G"12"$R]$C"-"$R["$W"Weeman$R]"
+echo $R"[$G"03"$R]$C"-"$R["$W"Kali$C"-"$W"nethunter"$R]        $R[$G"13"$R]$C"-"$R["$W"Ngrok$R]"
+echo $R"[$G"04"$R]$C"-"$R["$W"Ubuntu$R]                $R[$G"14"$R]$C"-"$R["$W"Osif$R]"
+echo $R"[$G"05"$R]$C"-"$R["$W"Optiva$C"-"$W"Framework"$R]      $R[$G"15"$R]$C"-"$R["$W"Hydra$R]"
+echo $R"[$G"06"$R]$C"-"$R["$W"Routersploit$R]          $R[$G"16"$R]$C"-"$R["$W"Tmux$C"-"$W"Bunch"$C"-"$W"v2.4"$R]"
+echo $R"[$G"07"$R]$C"-"$R["$W"Aircrack$C"-"$W"ng"$R]           $R[$G"17"$R]$C"-"$R["$W"Wascan$R]"
+echo $R"[$G"08"$R]$C"-"$R["$W"Payload5$R]              $R[$G"18"$R]$C"-"$R["$W"Setoolkit$R]"
+echo $R"[$G"09"$R]$C"-"$R["$W"Spammer$C"-"$W"grab"$R]          $R[$G"19"$R]$C"-"$R["$W"Getsploit$R]" 
+echo $R"[$G"10"$R]$C"-"$R["$W"Socialfish$R]            $R[$G"20"$R]$C"-"$R["$W"Termux$C"-"$W"sudo"$R]"
+echo
+echo "              $R[$G"21"$R]$C"-"$R["$W"Termux$C"-"$W"Theme"$R]"
+echo "              $R[$G"22"$R]$C"-"$R["$W"Instahack$R]"
+echo "              $R[$G"23"$R]$B"-"$R["$W"Sqlmap$R]"
+echo "              $R[$G"BB"$R]$B"-"$R["$W"BaCk$R]"
+echo "               "
+echo -n $W"EasY_HaCk:~$R"#" "
+#metasploit
+read zaki
+if [ "$zaki" = "1" ] || [ "$zaki" = "01" ];
+then
+clear
+		if [ -d $dir/metasploit-framework ]; 
+			then
+				echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"M"$W"etasploit"$G"-"$R"F"$W"ramework" " 
+				echo -n $R" Press" ENTRE to back" " 
+				read ENTRE
+				$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+		fi
+clear
+echo "$green it can take upto 10-15mins and also depends on your net speed"
+sleep 1
+find . -type f -name metasploit-framework\* -exec rm {} \;
+curl -LO  https://raw.githubusercontent.com/sabri-zaki/metasploit/master/metasploit.sh
+chmod +x metasploit.sh
+bash metasploit.sh
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#Beer-framwork
+elif [ "$zaki" = "2" ] || [ "$zaki" = "02" ];
+then
+clear
+$PREFIX/share/EasY_HaCk/.modules/.beef.sh
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#kali
+read zaki
+elif [ "$zaki" = "3" ] || [ "$zaki" = "03" ];
+then
+clear
+		if [ -d $kali ];
+			then
+				echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"K"$W"ali"$G"-"$R"N"$W"ethunter" $R"kali-fs" "
+				echo
+				echo -n $R" Press" ENTRE to back" " 
+				read ENTRE
+				$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+		fi
+		if [ -d $kali2 ];
+			then
+			echo
+				echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"K"$W"ali"$G"-"$R"N"$W"ethunter" $R"kali-arm64" " 
+				echo
+				echo -n $R" Press" ENTRE to back" " 
+				read ENTRE
+				$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+		fi
+		if [ -d $kali3 ];
+			then
+			echo
+				echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"K"$W"ali"$G"-"$R"N"$W"ethunter" $R"kali-armhf" " 
+				echo
+				echo -n $R" Press" ENTRE to back" " 
+				read ENTRE
+				$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+		fi
+		
+cd $dir
+pkg install wget proot -y && wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Kali/kali.sh && bash kali.sh
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#ubuntu
+elif [ "$zaki" = "4" ] || [ "$zaki" = "04" ];
+then
+clear
+			if [ -d $ubu ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"U"$W"buntu" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir 
+pkg install wget proot -y && wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Ubuntu/ubuntu.sh && bash ubuntu.sh
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#Optiva-Framework
+elif [ "$zaki" = "5" ] || [ "$zaki" = "05" ];
+then
+clear
+			if [ -d $dir/Optiva-Framework ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"O"$W"ptiva"$G"-"$R"F"$W"ramework" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+git clone https://github.com/joker25000/Optiva-Framework && cd Optiva-Framework && chmod +x *
+echo $G "[*] Loading... "
+apt install python2
+sleep 2
+echo "[*] installing requirements...."
+pip2 install -r requirements.txt
+pip2 install mechanize
+pip2 install requests
+pip2 install termcolor
+pip2 install --upgrade html5lib
+pip2 install --upgrade beautifulsoup4
+echo
+echo $B "[ ✔ ]Done"
+echo $G ""
+echo "------------------------------------" 
+echo "| [ ✔ ]installation completed[ ✔ ] |" 
+echo "------------------------------------" 
+echo
+echo "------------------------------------" 
+echo "| [ ✔ ]Run python2 optiva.py[ ✔ ] |" 
+echo "------------------------------------" 
+echo $G"#########################################"
+echo $C"| Thanks For Installing Optiva-Framework |"
+echo $G"#########################################"
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#routersploit
+elif [ "$zaki" = "6" ] || [ "$zaki" = "06" ];
+then 
+clear
+			if [ -d $dir/routersploit ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"R"$W"outersploit" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+git clone https://github.com/threat9/routersploit && cd routersploit && chmod +x * && python3 -m pip install -r requirements.txt 
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#Aircrack-ng
+elif [ "$zaki" = "7" ] || [ "$zaki" = "07" ];
+then 
+clear
+			if [ -e $AIR ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"A"$W"ircrack"$G"-"$W"ng" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+echo "setup Aircrack-ng Repository ......."
+pkg updates -y
+pkg upgrade -y
+pkg install dirmngr -y
+clear
+apt-key adv --keyserver pool.sks-keyservers.net --recv 45F2964132545795
+rm -rf $PREFIX/etc/apt/sources.list 
+touch $PREFIX/etc/apt/sources.list 
+sleep 0.5
+clear
+echo "deb https://termux.net stable main" > $PREFIX/etc/apt/sources.list 
+echo "deb https://termux-x11.ml x11 main" >> $PREFIX/etc/apt/sources.list 
+echo "deb [trusted=yes] https://hax4us.github.io/termux-tools/ extras main" >> $PREFIX/etc/apt/sources.list
+clear
+pkg updates -y
+pkg upgrade -y
+clear
+echo $Y"Aircrack-ng Installation..."
+pkg install aircrack-ng
+echo "done"
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#payload5
+elif [ "$zaki" = "8" ] || [ "$zaki" = "08" ];
+then
+clear
+			if [ -d $dir/payload5 ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"P"$W"ayload"$W"5" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+rm -rf $HOME/payload5.zip
+rm -rf $HOME/payload5
+rm -rf $HOME/../usr/bin/payload.sh
+rm -rf $HOME/../usr/bin/payload
+rm -rf $HOME/../usr/bin/setup5.sh
+mkdir /sdcard/payload5
+mkdir /sdcard/payload5/Encrypt
+git clone https://github.com/payload5/payload5 && cp payload5/payload5.zip $HOME && rm -rf payload5 && unzip payload5.zip && rm payload5.zip && cd payload5 && chmod +x *
+cd
+cp $HOME/payload5/payload.sh $HOME/../usr/bin/payload.sh
+cp $HOME/payload5/payload.sh $HOME/../usr/bin/payload
+cp $HOME/payload5/.setup5.sh $HOME/../usr/bin/setup5.sh
+chmod +x $HOME/../usr/bin/setup5.sh
+cd 
+rm -rf setupp
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#Spammer-Grab
+elif [ "$zaki" = "9" ] || [ "$zaki" = "09" ];
+then
+clear
+			if [ -d $dir/Spammer-Grab ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"pammer"$G"-"$R"G"$W"rab" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+git clone https://github.com/profionaldhim/Spammer-Grab && cd Spammer-Grab && unzip Spammer-Grab.zip && rm -rf Spammer-Grab.zip && mv Spammer-Grab spammer-grab && mv spammer-grab $dir && cd && rm -rf Spammer-Grab && mv spammer-grab Spammer-Grab && chmod 700 $dir/Spammer-Grab/* 
+pip2 install requests > /dev/null;
+echo "Done"
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#socialfish
+elif [ "$zaki" = "10" ];
+then
+clear
+			if [ -d $dir/SocialFish ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"ocialFish" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+git clone https://github.com/UndeadSec/SocialFish && cd SocialFish
+pip install -r requirements.txt > /dev/null;
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#shellfish
+elif [ "$zaki" = "11" ];
+then
+clear
+           if [ -d $dir/shellphish ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"hellphish" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+git clone https://github.com/thelinuxchoice/shellphish
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#weeman
+elif [ "$zaki" = "12" ];
+then
+clear
+           if [ -d $dir/weeman ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"W"$W"eeman" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+git clone https://github.com/evait-security/weeman
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#ngrok
+elif [ "$zaki" = "13" ];
+then
+clear
+			if [ -e $PREFIX/bin/ngrok ];
+		        then
+			        echo "          $R"N"$W"grok is installe"$R"d" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+			if [ -e $dir/ngrok ];
+		        then
+			        echo "          $R"N"$W"grok is installe"$R"d" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
+apt install unzip
+unzip ngrok-stable-linux-arm.zip
+rm -Rf ngrok-stable-linux-arm.zip
+mv ngrok $PREFIX/bin/
+chmod +x $PREFIX/bin/ngrok
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#osif
+elif [ "$zaki" = "14" ];
+then
+clear
+           if [ -d $dir/OSIF ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"O"$W"sif" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+git clone https://github.com/CiKu370/OSIF
+cd OSIF
+pip2 install -r requirements.txt > /dev/null;
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#hydra
+elif [ "$zaki" = "15" ];
+then
+clear
+           if [ -e $PREFIX/bin/hydra ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"H"$W"ydra" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+apt update -y
+apt upgrade -y
+apt-get install hydra -y
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#Tmux
+elif [ "$zaki" = "16" ];
+then
+clear
+           if [ -d $dir/Tmux-Bunch ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"T"$W"mux"$G"-"$R"B"$W"unch" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+git clone https://github.com/sabri-zaki/Tmux-Bunch && cd Tmux-Bunch && chmod +x * && bash setup
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#wascan
+elif [ "$zaki" = "17" ];
+then
+clear
+           if [ -d $dir/wascan ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"W"$W"ascan" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+git clone https://github.com/m4ll0k/WAScan.git wascan && cd wascan && chmod +x *
+pip2 install BeautifulSoup > /dev/null;
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#setoolkit
+elif [ "$zaki" = "18" ];
+then
+clear
+           if [ -d $dir/setoolkit ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"etoolkit" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+			if [ -d $dir/setoolkit-for-termux ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"etoolkit" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+
+cd $dir
+apt update && apt upgrade
+apt install python2 figlet python python-dev python2-dev wget tar termux-exec
+wget https://hax4us.github.io/setoolkit_7.7.2.gz
+tar -xf setoolkit_7.7.2.gz
+cd setoolkit
+pip install pexpect pycrypto pyopenssl pefile
+python setup.py install 
+echo
+cd $dir
+rm setoolkit_7.7.2.gz
+clear
+figlet Installed
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#getsploit
+elif [ "$zaki" = "19" ];
+then
+clear
+           if [ -d $dir/getsploit ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"G"$W"etsploit" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+git clone https://github.com/vulnersCom/getsploit
+pip install getsploit > /dev/null;
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#sudo
+elif [ "$zaki" = "20" ];
+then
+clear
+           if [ -e $PREFIX/bin/sudo ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"udo" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+pkg install ncurses-utils -y
+pkg install wget -y
+wget https://raw.githubusercontent.com/sabri-zaki/Termux-sudo/master/sudo
+cat sudo > /data/data/com.termux/files/usr/bin/sudo
+chmod 700 /data/data/com.termux/files/usr/bin/sudo
+rm -Rf $dir/sudo 
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#bashrc
+elif [ "$zaki" = "21" ];
+then
+clear
+           if [ -e $PREFIX/bin/lolcat ];
+				then
+				 cd $dir
+                 rm -rf $dir/.bashrc
+                 wget https://raw.githubusercontent.com/sabri-zaki/bashrc/master/sabri-zaki-banner
+                 clear
+                 cd
+                 read -p " Put Your Name Logo : " logo
+                 sed "s/zaki/$logo/" $dir/sabri-zaki-banner > $dir/.bashrc
+                 figlet -f big "   $logo" | lolcat
+                 echo " Done"
+                 rm -rf $dir/sabri-zaki-banner
+                 sleep 2
+	             $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+gem install lolcat
+rm -rf $dir/.bashrc
+wget https://raw.githubusercontent.com/sabri-zaki/bashrc/master/sabri-zaki-banner
+clear
+cd
+#read logo
+read -p " Put Your Name Logo : " logo
+sed "s/zaki/$logo/g" $dir/sabri-zaki-banner > $dir/.bashrc
+figlet -f big "   $logo" | lolcat
+echo " Done"
+rm -rf $dir/sabri-zaki-banner
+sleep 1
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#instahack
+elif [ "$zaki" = "22" ];
+then
+clear
+           if [ -e $dir/instahack ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"I"$W"nstahack" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+git clone https://github.com/fuck3erboy/instahack
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+elif [ "$zaki" = "23" ];
+then
+clear
+           if [ -e $dir/sqlmap ];
+				then
+				echo
+					echo "         $R"Y"$W"ou "$R"H"$W"ave "$R"S"$W"qlmap" "
+					echo
+					echo -n $R" Press" ENTRE to back" " 
+					read ENTRE
+					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+			fi
+cd $dir
+cp -rf $E/.sqlmap $dir/sqlmap
+cd $dir/sqlmap && git pull
+echo -n $R" Press" ENTRE to back" " 
+read ENTRE
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+#loop-back
+elif [ $zaki == ]; 
+then
+clear
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
+fi
+#back
+if [ "$zaki" = "B" ] || [ "$zaki" = "BB" ] || [ "$zaki" = "b" ] || [ "$zaki" = "bb" ];
+then
+EasY_HaCk
+fi

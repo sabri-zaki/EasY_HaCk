@@ -48,25 +48,21 @@ echo -e "$red --------------"
 sleep 0.1
 echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR"
 sleep 0.1
-echo -e "$a      [$r"02"$a"]"$g INSTALL METASPLOIT"
+echo -e "$a      [$r"02"$a"]"$g ADVANCE NMAP SCAN"
 sleep 0.1
-echo -e "$a      [$r"03"$a"]"$g BeeF INSTALL "
+echo -e "$a      [$r"03"$a"]"$g WEB-HACKS"
 sleep 0.1
-echo -e "$a      [$r"04"$a"]"$g INSTALL NGROK "
+echo -e "$a      [$r"04"$a"]"$g PASSWORD CRACK"
 sleep 0.1
-echo -e "$a      [$r"05"$a"]"$g ADVANCE NMAP SCAN"
+echo -e "$a      [$r"05"$a"]"$g Termux Tools"
 sleep 0.1
-echo -e "$a      [$r"06"$a"]"$g WEB-HACKS"
+echo -e "$a      [$r"06"$a"]"$g MY SERVER"
 sleep 0.1
-echo -e "$a      [$r"07"$a"]"$g PASSWORD CRACK"
+echo -e "$a      [$r"07"$a"]"$g ABOUT"
 sleep 0.1
-echo -e "$a      [$r"08"$a"]"$g MY SERVER"
+echo -e "$a      [$r"08"$a"]"$g UPDATE ME"
 sleep 0.1
-echo -e "$a      [$r"09"$a"]"$g ABOUT"
-sleep 0.1
-echo -e "$a      [$r"10"$a"]"$g UPDATE ME"
-sleep 0.1
-echo -e "$a      [$r"11"$a"]"$g CONTACT ME"
+echo -e "$a      [$r"09"$a"]"$g CONTACT ME"
 sleep 0.1
 echo -e "$a      [$w"XX"$a"]"$g EXIT $reset"
 sleep 0.5
@@ -82,95 +78,10 @@ then
 EasY_HaCk
 fi
 
-check_dependencies()
-{
-	echo -e "$white checking metasploit Framework ..."
-	sleep 1
-if [ -e $PREFIX/bin/msfconsole ];
-then
-echo -e "$cyan OK$reset"
-ok="ok"
-else
-echo
-echo -e "$red please make sure metasploit is installed if not so please select 2 for metasploit."
- echo
-echo -e "$red                         $ENTER$reset"
-read tmp
-EasY_HaCk
-fi
-	  if [ $ok = "ok" ];
-	  then
-$PREFIX/bin/sed -i '2 a check=1' $PREFIX/bin/EasY_HaCk
-fi
-}
-
-install_metasploit()
-{
-echo -e "$green it can take upto$red 10-15mins and also depends on your net speed"
-sleep 1
-find . -type f -name metasploit-framework\* -exec rm {} \;
-if [ -e $PREFIX/bin/curl ]; then
-curl -LO https://raw.githubusercontent.com/sabri-zaki/metasploit/master/metasploit.sh
-chmod +x metasploit.sh
-bash metasploit.sh
-echo
-echo -e "$red if you dont think , all were ok so try again with fast internet"
-echo -e "$g           $ENTER$reset"
-read tmp1
-EasY_HaCk
-else 
-
-	apt install curl
-	echo -e "$green it can take upto 10-15mins and also depends on your net speed"
-	sleep 1
-	find . -type f -name metasploit-framework\* -exec rm {} \;
-	curl -LO  https://raw.githubusercontent.com/sabri-zaki/metasploit/master/metasploit.sh
-	chmod +x metasploit.sh
-	bash metasploit.sh
-echo
-echo -e "$red if you dont think , all were ok so try again with fast internet"
-	echo -e "$red                    $ENTER$reset"
-read tmp2
-EasY_HaCk
-fi
-}
-
 create_payload()
 {
 python2 $PREFIX/share/EasY_HaCk/.modules/.pay.py
 EasY_HaCk
-}
-
-install_ngrok()
-{
-if [ -e $PREFIX/bin/curl ];
-then
-	curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-	apt install unzip
-	unzip ngrok-stable-linux-arm.zip
-	mv ngrok $PREFIX/bin/
-	chmod +x $PREFIX/bin/ngrok
-	echo
-	echo -e "$green Ngrok is installed :)"
-	echo 
-	echo -e "$red Plz wait...you are redirecting to main menu$reset"
-	sleep 1
-	EasY_HaCk
-else
-	apt install curl
-	curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-	apt install unzip
-	unzip ngrok-stable-linux-arm.zip
-	mv ngrok $PREFIX/bin/
-	chmod +x $PREFIX/bin/ngrok
-	echo
-	echo -e "Ngrok is installed :)"
-	echo
-	echo -e "Plz wait...you are redirecting to main menu$reset"
-	sleep 2
-	EasY_HaCk
-
-fi
 }
 
 about()
@@ -220,10 +131,10 @@ read tmp
 EasY_HaCk
 }
 
-beef()
+termux()
 {
 clear
-$PREFIX/share/EasY_HaCk/.modules/.beef.sh
+$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 EasY_HaCk
 }
 
@@ -299,37 +210,37 @@ then
 clear
 echo -e $g "welcom to web_hacking"
 echo -e "$yellow"[✔]:[ "$w"Internet"$yellow ]:$green connected !"
-sleep 6 
+sleep 4 
 clear
 echo "WEB-HACK "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ./ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ..\ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK .../ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ....\ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ...../ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ......\ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ......./ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ........\ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ........./ "
-sleep 1
+sleep 0.2
 clear
 echo "WEB-HACK ...........\ "
 $PREFIX/share/EasY_HaCk/.modules/.web
@@ -353,29 +264,25 @@ $PREFIX/share/EasY_HaCk/.modules/.server
 case "$option" in
 	1) if [ $check = 0 ];
 		then
-			check_dependencies
+			create_payload
 			fi
 			create_payload
 		 ;;
-	2) install_metasploit
+	2) nmap
 		;;
-	3) beef
+	3) web_hacking
 		;;
-	4) install_ngrok
+	4) password
 		;;
-	5) nmap
+	5) termux
 		;;
-	6) web_hacking
+	6)  server
 		;;
-	7) password
-		;;
-	8)  server
-		;;
-	9)  about
+	7)  about
 		 ;;
-	10)  update
+	8)  update
 		 ;;
-	11) contact
+	9) contact
 		;;
 esac
 

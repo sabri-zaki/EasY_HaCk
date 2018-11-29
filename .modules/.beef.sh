@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 #variable
-beef=/data/data/com.termux/files/usr/share/beef-xs
+beef=/data/data/com.termux/files/usr/share/beef-xss
 
 #banner
 

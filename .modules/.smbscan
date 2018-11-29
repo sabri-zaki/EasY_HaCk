@@ -45,45 +45,45 @@ echo $B"    [$W"XX"$B]$G EXIT "
 echo " "
 echo -n $R"[$W"SMB-SCANE"$R]$W"~"$R"'#': 
 read zaki
-if [ $zaki = "01" ] || [ $zaki = "1" ];
+if [ "$zaki" = "01" ] || [ "$zaki" = "1" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.brute-smb
-elif [ $zaki = "02" ] || [ $zaki = "2" ];
+elif [ "$zaki" = "02" ] || [ "$zaki" = "2" ];
 then
 clear
 $PREFIX/share/EasY_HaCk/.modules/.double-pulsar-backdoor
-elif [ $zaki = "03" ] || [ $zaki = "3" ];
+elif [ "$zaki" = "03" ] || [ "$zaki" = "3" ];
 then
 clear
 $PREFIX/share/EasY_HaCk/.modules/.enum-domains
-elif [ $zaki = "04" ] || [ $zaki = "4" ];
+elif [ "$zaki" = "04" ] || [ "$zaki" = "4" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.enum-groups
-elif [ $zaki = "05" ] || [ $zaki = "5" ];
+elif [ "$zaki" = "05" ] || [ "$zaki" = "5" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.enum-processes
-elif [ $zaki = "06" ] || [ $zaki = "6" ];
+elif [ "$zaki" = "06" ] || [ "$zaki" = "6" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.enum-sessions
-elif [ $zaki = "07" ] || [ $zaki = "7" ];
+elif [ "$zaki" = "07" ] || [ "$zaki" = "7" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.enum-users
-elif [ $zaki = "08" ] || [ $zaki = "8" ];
+elif [ "$zaki" = "08" ] || [ "$zaki" = "8" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.security-mode
-elif [[ $zaki = "09" ] || [ $zaki = "9" ];
+elif [[ "$zaki" = "09" ] || [ "$zaki" = "9" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.system-info
-elif [ $zaki = "10" ];
+elif [ "$zaki" = "10" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.dns-brute 
-elif [ $zaki = "11" ];
+elif [ "$zaki" = "11" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.spider
-elif [ $zaki = "12" ];
+elif [ "$zaki" = "12" ];
 then
 $PREFIX/share/EasY_HaCk/.modules/.enum-websites
-elif [ $zaki = "0" ] || [ $zaki = "00" ];
+elif [ "$zaki" = "0" ] || [ "$zaki" = "00" ];
 then
 clear
 echo "B.\ "
@@ -99,7 +99,7 @@ echo "BACK..../ "
 sleep 2
 clear
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+elif [ "$zaki" = "X" ] || [ "$zaki" = "x" ] || [ "$zaki" = "xx" ] || [ "$zaki" = "XX" ] ;
 then
 clear
 echo $R

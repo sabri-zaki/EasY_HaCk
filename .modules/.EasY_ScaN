@@ -43,7 +43,7 @@ echo $W"------------------(main menu)-------------------"$Y2
   echo 
   echo -n $R"[$W"EasY_ScaN"$R]$W"~#:""
 read zaki
-if [ $zaki = "1" ] || [ $zaki = "01" ];
+if [ "$zaki" = "1" ] || [ "$zaki" = "01" ];
 then 
 echo
 read
@@ -56,10 +56,11 @@ echo -n $R "                       else  ctrl+c to EXIT "
 read target
 echo -n $R "Your External IP$Y"~"$W"#"$Y":" "
 curl ipinfo.io/ip $target
-sleep 15
+echo -n $R"Press" ENTRE to back" " 
+read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
 echo
-elif [ $zaki = "2" ] || [ $zaki = "02" ];
+elif [ "$zaki" = "2" ] || [ "$zaki" = "02" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -69,7 +70,7 @@ nmap -Pn -T4 -A -v $target
 echo -n $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "3" ] || [ $zaki = "03" ];
+elif [ "$zaki" = "3" ] || [ "$zaki" = "03" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -79,7 +80,7 @@ sudo nmap -Pn -sS -sU -T4 -A -v $target
 echo -n $R" Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "4" ] || [ $zaki = "04" ];
+elif [ "$zaki" = "4" ] || [ "$zaki" = "04" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -89,7 +90,7 @@ nmap -Pn -p- -T4 -A -v $target
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "5" ] || [ $zaki = "05" ];
+elif [ "$zaki" = "5" ] || [ "$zaki" = "05" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -99,7 +100,7 @@ nmap -Pn -T4 -A -v -Pn $target
 echo -n $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "6" ] || [ $zaki = "06" ];
+elif [ "$zaki" = "6" ] || [ "$zaki" = "06" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -109,7 +110,7 @@ nmap -Pn -sn $target
 echo -n  $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "7" ] || [ $zaki = "07" ];
+elif [ "$zaki" = "7" ] || [ "$zaki" = "07" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -119,7 +120,7 @@ nmap -Pn -T4 -F $target
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "8" ] || [ $zaki = "08" ];
+elif [ "$zaki" = "8" ] || [ "$zaki" = "08" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -129,7 +130,7 @@ sudo nmap -Pn -sV -T4 -O -F --version-all $target
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "9" ] || [ $zaki = "09" ];
+elif [ "$zaki" = "9" ] || [ "$zaki" = "09" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -139,7 +140,7 @@ sudo nmap -Pn -sn --traceroute $target
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "10" ];
+elif [ "$zaki" = "10" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -149,7 +150,7 @@ nmap $target
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "11" ];
+elif [ "$zaki" = "11" ];
 then 
 echo
 echo $C "Please input IP target or host "
@@ -159,7 +160,7 @@ sudo nmap -Pn -sS -sU -T4 -A -v -PE -PP -PS80,443 -PA3389 -PU40125 -PY -g 53 --s
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
-elif [ $zaki = "12" ];
+elif [ "$zaki" = "12" ];
 then
 clear
 echo "smbscan"
@@ -195,7 +196,7 @@ clear
 echo "smbscan ...........\ "
 echo " "
 $PREFIX/share/EasY_HaCk/.modules/.smbscan
-elif [ $zaki = "00" ] || [ $zaki = "0" ];
+elif [ "$zaki" = "00" ] || [ "$zaki" = "0" ];
 then
 clear
 echo "EasY_HacK "
@@ -230,7 +231,7 @@ sleep 0.3
 clear
 echo "EasY_HacK ...........\ "
 EasY_HaCk
-elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+elif [ "$zaki" = "X" ] || [ "$zaki" = "x" ] || [ "$zaki" = "xx" ] || [ "$zaki" = "XX" ] ;
 then
 clear
 echo "$R E.\ "

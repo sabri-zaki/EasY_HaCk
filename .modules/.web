@@ -40,13 +40,11 @@ echo $B"    [$W"XX"$B]$G EXIT "
 echo " "
 echo -n $R"[$W"Inf0rmati0n Gathering"$R]$W"~"$R"'#': 
 read zaki
-if [ $zaki = "1" ] || [ $zaki = "01" ];
+if [ "$zaki" = "1" ] || [ "$zaki" = "01" ];
 then
 echo
 $PREFIX/share/EasY_HaCk/.modules/.inf0
-clear
-echo
-elif [ $zaki = "2" ] || [ $zaki = "02" ];
+elif [ "$zaki" = "2" ] || [ "$zaki" = "02" ];
 then
 echo
 echo $C "Please input the target website "
@@ -57,7 +55,7 @@ python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --skip-waf
 echo -n $R" Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "3" ] || [ $zaki = "03" ];
+elif [ "$zaki" = "3" ] || [ "$zaki" = "03" ];
 then 
 echo
 clear
@@ -70,7 +68,7 @@ python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --wizard -
 echo -n $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "4" ] || [ $zaki = "04" ];
+elif [ "$zaki" = "4" ] || [ "$zaki" = "04" ];
 then 
 echo
 clear
@@ -83,7 +81,7 @@ python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target --skip-waf
 echo -n  $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "5" ] || [ $zaki = "05" ];
+elif [ "$zaki" = "5" ] || [ "$zaki" = "05" ];
 then 
 echo
 clear
@@ -98,7 +96,7 @@ python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target1 --skip-wa
 echo -n  $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "6" ] || [ $zaki = "06" ];
+elif [ "$zaki" = "6" ] || [ "$zaki" = "06" ];
 then 
 echo
 clear
@@ -116,7 +114,7 @@ python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target1 -D $targe
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "7" ] || [ $zaki = "07" ];
+elif [ "$zaki" = "7" ] || [ "$zaki" = "07" ];
 then 
 echo
 clear
@@ -135,7 +133,7 @@ python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py -u $target1  -D $targ
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "8" ] || [ $zaki = "08" ];
+elif [ "$zaki" = "8" ] || [ "$zaki" = "08" ];
 then 
 echo
 clear
@@ -143,14 +141,14 @@ python $PREFIX/share/EasY_HaCk/.modules/.hash-id.py
 echo -n  $R"Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "9" ] || [ $zaki = "09" ];
+elif [ "$zaki" = "9" ] || [ "$zaki" = "09" ];
 then 
 echo
 python2 $PREFIX/share/EasY_HaCk/.modules/.Hash/Hash.py
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "10" ]
+elif [ "$zaki" = "10" ]
 then 
 echo
 clear
@@ -168,18 +166,18 @@ date
 echo -n  $R"Press" ENTRE to back" "  
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "11" ];
+elif [ "$zaki" = "11" ];
 then 
 echo
 termux-open https://crackstation.net
 echo -n  $R"Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "12" ];
+elif [ "$zaki" = "12" ];
 then
 clear
 $PREFIX/share/EasY_HaCk/.modules/.dos
-elif [ $zaki = "13" ];
+elif [ "$zaki" = "13" ];
 then
 clear
 echo $G"+-+-+-+-+-+$R +-+-+-+-+$W +-+-+-+-+-+-+"
@@ -187,12 +185,12 @@ echo $G"|A|d|m|i|n|$R |p|a|g|e|$W |f|i|n|d|e|r|"
 echo $G"+-+-+-+-+-+$R +-+-+-+-+$W +-+-+-+-+-+-+ $Y2 v1.2"$G
 python2 $PREFIX/share/EasY_HaCk/.modules/.admin-page-finder.py
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "14" ];
+elif [ "$zaki" = "14" ];
 then
 clear
 python2 $PREFIX/share/EasY_HaCk/.modules/.sqlmap/sqlmap.py --update
 $PREFIX/share/EasY_HaCk/.modules/.web
-elif [ $zaki = "00" ] || [ $zaki = "0" ];
+elif [ "$zaki" = "00" ] || [ "$zaki" = "0" ];
 then
 clear
 echo "EasY_HacK "
@@ -227,7 +225,7 @@ sleep 0.5
 clear
 echo "EasY_HacK ...........\ "
 EasY_HaCk
-elif [ $zaki = "X" ] || [ $zaki = "x" ] || [ $zaki = "xx" ] || [ $zaki = "XX" ] ;
+elif [ "$zaki" = "X" ] || [ "$zaki" = "x" ] || [ "$zaki" = "xx" ] || [ "$zaki" = "XX" ] ;
 then
 clear
 echo "$R E.\ "
