@@ -26,7 +26,7 @@ echo $C"          ██║     ██    ██ ██    ██   ██      
 echo $Y"          ██║     ██    ██ ██    ██   ██     "
 echo $W"          ██║      ██████   ██████    ███████ $R v1"
 echo "          ╚═╝                     "
-echo $R"[$G"01"$R]$C"-"$R["$W"Metasploit$C"-"$W"framwork"$R]   $R[$G"11"$R]$C"-"$R["$W"Shellphish$R]"
+echo $R"[$G"01"$R]$C"-"$R["$W"Metasploit$C"-"$W"framwork"$C"-"$W"v5"$R]$R[$G"11"$R]$C"-"$R["$W"Shellphish$R]"
 echo $R"[$G"02"$R]$C"-"$R["$W"Beer$C"-"$W"framwork"$R]         $R[$G"12"$R]$C"-"$R["$W"Weeman$R]"
 echo $R"[$G"03"$R]$C"-"$R["$W"Kali$C"-"$W"nethunter"$R]        $R[$G"13"$R]$C"-"$R["$W"Ngrok$R]"
 echo $R"[$G"04"$R]$C"-"$R["$W"Ubuntu$R]                $R[$G"14"$R]$C"-"$R["$W"Osif$R]"
@@ -55,13 +55,37 @@ clear
 				read ENTRE
 				$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 		fi
+cd $dir
 clear
 echo "$green it can take upto 10-15mins and also depends on your net speed"
 sleep 1
 find . -type f -name metasploit-framework\* -exec rm {} \;
-curl -LO  https://raw.githubusercontent.com/sabri-zaki/metasploit/master/metasploit.sh
-chmod +x metasploit.sh
-bash metasploit.sh
+apt update -y && apt upgrade -y
+apt install -y autoconf bison clang coreutils curl findutils git apr apr-util libffi-dev libgmp-dev libpcap-dev postgresql-dev readline-dev libsqlite-dev openssl-dev libtool libxml2-dev libxslt-dev ncurses-dev pkg-config wget make ruby-dev libgrpc-dev termux-tools ncurses-utils ncurses unzip zip tar postgresql termux-elf-cleaner
+git clone https://github.com/rapid7/metasploit-framework
+cd metasploit-framework
+sed '/rbnacl/d' -i Gemfile.lock
+sed '/rbnacl/d' -i metasploit-framework.gemspec
+gem install bundler
+bundle install -j5
+$PREFIX/bin/find -type f -executable -exec termux-fix-shebang \{\} \;
+
+		if [ -e $PATH/bin/msfconsole ];then
+				rm $PATH/bin/msfconsole
+		fi
+		if [ -e $PATH/bin/msfvenom ];then
+				rm $PATH/bin/msfvenom
+		fi
+ln -s $dir/metasploit-framework/msfconsole /data/data/com.termux/files/usr/bin/
+ln -s $dir/metasploit-framework/msfvenom /data/data/com.termux/files/usr/bin/
+termux-elf-cleaner /data/data/com.termux/files/usr/lib/ruby/gems/2.4.0/gems/pg-0.20.0/lib/pg_ext.so
+cd $dir/metasploit-framework/config
+curl -LO https://Auxilus.github.io/database.yml
+mkdir -p $PREFIX/var/lib/postgresql
+initdb $PREFIX/var/lib/postgresql
+pg_ctl -D $PREFIX/var/lib/postgresql start
+createuser msf
+createdb msf_database
 echo -n $R" Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
