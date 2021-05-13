@@ -1,6 +1,6 @@
 ## EasY_HaCk
 1. Hack the World using Termux
-this tool is a developed by sabri.zaki for penetration testing using 
+this tool is developed by sabri.zaki for penetration testing using 
 2. metasploit-framework 
 3. sqlmap 
 4. nmap 
