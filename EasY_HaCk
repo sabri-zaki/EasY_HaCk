@@ -21,7 +21,6 @@ G='\e[110m'
 G1='\e[101m'
 o='\033[0m'
 #banner
-sleep 0.5
 echo -e $yellow
 figlet -f big "EasYHaCk"
 
@@ -39,33 +38,20 @@ echo " "
 echo -e "              $red Press ENTER to Continue"
 echo -e $yellow
 echo -n -e "[EasY_HaCk]~#:"
-sleep 2
 read tmp
 echo -e " "
 echo -e "$blue THE MAIN MENU"
-sleep 0.5
 echo -e "$red --------------"
-sleep 0.1
 echo -e "$a      [$r"01"$a"]"$g PAYLOAD GENERATOR"
-sleep 0.1
 echo -e "$a      [$r"02"$a"]"$g ADVANCE NMAP SCAN"
-sleep 0.1
 echo -e "$a      [$r"03"$a"]"$g WEB-HACKS"
-sleep 0.1
 echo -e "$a      [$r"04"$a"]"$g PASSWORD CRACK"
-sleep 0.1
 echo -e "$a      [$r"05"$a"]"$g Termux Tools"
-sleep 0.1
 echo -e "$a      [$r"06"$a"]"$g MY SERVER"
-sleep 0.1
 echo -e "$a      [$r"07"$a"]"$g ABOUT"
-sleep 0.1
 echo -e "$a      [$r"08"$a"]"$g UPDATE ME"
-sleep 0.1
 echo -e "$a      [$r"09"$a"]"$g CONTACT ME"
-sleep 0.1
 echo -e "$a      [$w"XX"$a"]"$g EXIT $reset"
-sleep 0.5
 echo -e $yellow
 echo -n $B "[EasY_HaCk]~#:"
 read option
@@ -74,7 +60,6 @@ then
 	echo -e "$red Please enter correct number of choice"
 	echo
 	echo -e "$green Plz wait... You are redirecting to main menu"
-	sleep 2
 EasY_HaCk
 fi
 
@@ -159,45 +144,11 @@ then
 clear
 echo -e $g "welcom to EasY_ScaN"
 echo -e "$yellow"[✔]:[ "$w"Internet"$yellow ]:$green connected !"
-sleep 3
-clear
-echo "EasY_ScaN "
-sleep 0.3
-clear
-echo "EasY_ScaN ./ "
-sleep 0.3
-clear
-echo "EasY_ScaN ..\ "
-sleep 0.3
-clear
-echo "EasY_ScaN .../ "
-sleep 0.3
-clear
-echo "EasY_ScaN ....\ "
-sleep 0.3
-clear
-echo "EasY_ScaN ...../ "
-sleep 0.3
-clear
-echo "EasY_ScaN ......\ "
-sleep 0.3
-clear
-echo "EasY_ScaN ......./ "
-sleep 0.3
-clear
-echo "EasY_ScaN ........\ "
-sleep 0.3
-clear
-echo "EasY_ScaN ........./ "
-sleep 0.3
-clear
-echo "EasY_ScaN ...........\ "
 $PREFIX/share/EasY_HaCk/.modules/.EasY_ScaN
 else
 echo -e "$red sorry ther is no internet im your mobile "
 echo -e "$red you can't use EasY_ScaN"
 echo -e "$yellow "["$red "x"$yellow ]:[$w "Internet"$yellow ]:$red Not connected !"
-sleep 20
 $PREFIX/share/EasY_HaCk/EasY_HaCk
 fi
 
@@ -210,45 +161,11 @@ then
 clear
 echo -e $g "welcom to web_hacking"
 echo -e "$yellow"[✔]:[ "$w"Internet"$yellow ]:$green connected !"
-sleep 4 
-clear
-echo "WEB-HACK "
-sleep 0.2
-clear
-echo "WEB-HACK ./ "
-sleep 0.2
-clear
-echo "WEB-HACK ..\ "
-sleep 0.2
-clear
-echo "WEB-HACK .../ "
-sleep 0.2
-clear
-echo "WEB-HACK ....\ "
-sleep 0.2
-clear
-echo "WEB-HACK ...../ "
-sleep 0.2
-clear
-echo "WEB-HACK ......\ "
-sleep 0.2
-clear
-echo "WEB-HACK ......./ "
-sleep 0.2
-clear
-echo "WEB-HACK ........\ "
-sleep 0.2
-clear
-echo "WEB-HACK ........./ "
-sleep 0.2
-clear
-echo "WEB-HACK ...........\ "
 $PREFIX/share/EasY_HaCk/.modules/.web
 else
 echo -e "$red sorry ther is no internet im your mobile "
 echo -e "$red you can't use WEB-HACK"
 echo -e "$yellow "["$red "x"$yellow ]:[$w "Internet"$yellow ]:$red Not connected !"
-sleep 20
 $PREFIX/share/EasY_HaCk/EasY_HaCk
 fi
 
@@ -293,126 +210,7 @@ echo " by by "
 exit 
 else
 clear
-echo "E.................................\ "
-sleep 0.1
-clear
-echo "EX................................/ "
-sleep 0.1
-clear
-echo "EXI...............................\ "
-sleep 0.1
-clear
-echo "EXIT............................../ "
-sleep 0.1
-clear
-echo "EXIT E............................\ "
-sleep 0.1
-clear
-echo "EXIT EA.........................../ "
-sleep 0.1
-clear
-echo "EXIT EAS..........................\ "
-sleep 0.1
-clear
-echo "EXIT EASY........................./ "
-sleep 0.1
-clear
-echo "EXIT EASY H.......................\ "
-sleep 0.1
-clear
-echo "EXIT EASY HA....................../ "
-sleep 0.1
-clear
-echo "EXIT EASY HAC.....................\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK..................../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK T..................\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TO................./ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOO................\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL.............../ "
-sleep 0.1
-clear
-echo "EXIT EASY HACK TOOL...............\ "
-sleep 0.1
-clear
 echo -e "\033[1;91mzaki sabri  wish you all the best ♡ you all "
-sleep 3
-clear 
 exit
 fi
 read zaki
