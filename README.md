@@ -28,15 +28,13 @@ all that on Termux
 
 {3} Beef-Framework installation 
 
-{4} NGROK installation
+{4} Network scanning using `nmap`
 
-{5} Network scanning using `nmap`
+{5} WEB-HACKS
 
-{6} WEB-HACKS
+{6} PASSWORD CRACK
 
-{7} PASSWORD CRACK
-
-{8} Starting your web server 
+{7} Starting your web server 
 
 ## [UPDATE]
 To update the Tool choose option number `10`

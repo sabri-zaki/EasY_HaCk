@@ -28,18 +28,17 @@ echo $W"          ██║      ██████   ██████    █�
 echo "          ╚═╝                     "
 echo $R"[$G"01"$R]$C"-"$R["$W"Metasploit$C"-"$W"framwork"$C"-"$W"v5"$R]$R[$G"11"$R]$C"-"$R["$W"Shellphish$R]"
 echo $R"[$G"02"$R]$C"-"$R["$W"Beef$C"-"$W"framwork"$R]         $R[$G"12"$R]$C"-"$R["$W"Weeman$R]"
-echo $R"[$G"03"$R]$C"-"$R["$W"Kali$C"-"$W"nethunter"$R]        $R[$G"13"$R]$C"-"$R["$W"Ngrok$R]"
-echo $R"[$G"04"$R]$C"-"$R["$W"Ubuntu$R]                $R[$G"14"$R]$C"-"$R["$W"Osif$R]"
-echo $R"[$G"05"$R]$C"-"$R["$W"Optiva$C"-"$W"Framework"$R]      $R[$G"15"$R]$C"-"$R["$W"Hydra$R]"
-echo $R"[$G"06"$R]$C"-"$R["$W"Routersploit$R]          $R[$G"16"$R]$C"-"$R["$W"Tmux$C"-"$W"Bunch"$C"-"$W"v2.4"$R]"
-echo $R"[$G"07"$R]$C"-"$R["$W"Aircrack$C"-"$W"ng"$R]           $R[$G"17"$R]$C"-"$R["$W"Wascan$R]"
-echo $R"[$G"08"$R]$C"-"$R["$W"Payload5$R]              $R[$G"18"$R]$C"-"$R["$W"Setoolkit$R]"
-echo $R"[$G"09"$R]$C"-"$R["$W"Spammer$C"-"$W"grab"$R]          $R[$G"19"$R]$C"-"$R["$W"Getsploit$R]" 
-echo $R"[$G"10"$R]$C"-"$R["$W"Socialfish$R]            $R[$G"20"$R]$C"-"$R["$W"Termux$C"-"$W"sudo"$R]"
+echo $R"[$G"03"$R]$C"-"$R["$W"Kali$C"-"$W"nethunter"$R]        $R[$G"13"$R]$C"-"$R["$W"Osif$R]"
+echo $R"[$G"04"$R]$C"-"$R["$W"Ubuntu$R]                $R[$G"14"$R]$C"-"$R["$W"Hydra$R]"
+echo $R"[$G"05"$R]$C"-"$R["$W"Optiva$C"-"$W"Framework"$R]      $R[$G"15"$R]$C"-"$R["$W"Tmux$C"-"$W"Bunch"$C"-"$W"v2.4"$R]"
+echo $R"[$G"06"$R]$C"-"$R["$W"Routersploit$R]          $R[$G"16"$R]$C"-"$R["$W"Wascan$R]"
+echo $R"[$G"07"$R]$C"-"$R["$W"Aircrack$C"-"$W"ng"$R]           $R[$G"17"$R]$C"-"$R["$W"Setoolkit$R]"
+echo $R"[$G"08"$R]$C"-"$R["$W"Payload5$R]              $R[$G"18"$R]$C"-"$R["$W"Getsploit$R]"
+echo $R"[$G"09"$R]$C"-"$R["$W"Spammer$C"-"$W"grab"$R]          $R[$G"19"$R]$C"-"$R["$W"Termux$C"-"$W"sudo"$R]" 
+echo $R"[$G"10"$R]$C"-"$R["$W"Socialfish$R]            $R[$G"20"$R]$C"-"$R["$W"Termux$C"-"$W"Theme"$R]"
 echo
-echo "              $R[$G"21"$R]$C"-"$R["$W"Termux$C"-"$W"Theme"$R]"
-echo "              $R[$G"22"$R]$C"-"$R["$W"Instahack$R]"
-echo "              $R[$G"23"$R]$B"-"$R["$W"Sqlmap$R]"
+echo "              $R[$G"21"$R]$C"-"$R["$W"Instahack$R]"
+echo "              $R[$G"22"$R]$B"-"$R["$W"Sqlmap$R]"
 echo "              $R[$G"BB"$R]$B"-"$R["$W"BaCk$R]"
 echo "               "
 echo -n $W"EasY_HaCk:~$R"#" "
@@ -358,39 +357,8 @@ git clone https://github.com/evait-security/weeman
 echo -n $R" Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
-#ngrok
-elif [ "$zaki" = "13" ];
-then
-clear
-			if [ -e $PREFIX/bin/ngrok ];
-		        then
-			        echo "          $R"N"$W"grok is installe"$R"d" "
-					echo
-					echo -n $R" Press" ENTRE to back" " 
-					read ENTRE
-					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
-			fi
-			if [ -e $dir/ngrok ];
-		        then
-			        echo "          $R"N"$W"grok is installe"$R"d" "
-					echo
-					echo -n $R" Press" ENTRE to back" " 
-					read ENTRE
-					$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
-			fi
-
-cd $dir
-curl -LO https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-arm.zip
-apt install unzip
-unzip ngrok-stable-linux-arm.zip
-rm -Rf ngrok-stable-linux-arm.zip
-mv ngrok $PREFIX/bin/
-chmod +x $PREFIX/bin/ngrok
-echo -n $R" Press" ENTRE to back" " 
-read ENTRE
-$PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #osif
-elif [ "$zaki" = "14" ];
+elif [ "$zaki" = "13" ];
 then
 clear
            if [ -d $dir/OSIF ];
@@ -411,7 +379,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #hydra
-elif [ "$zaki" = "15" ];
+elif [ "$zaki" = "14" ];
 then
 clear
            if [ -e $PREFIX/bin/hydra ];
@@ -431,7 +399,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #Tmux
-elif [ "$zaki" = "16" ];
+elif [ "$zaki" = "15" ];
 then
 clear
            if [ -d $dir/Tmux-Bunch ];
@@ -450,7 +418,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #wascan
-elif [ "$zaki" = "17" ];
+elif [ "$zaki" = "16" ];
 then
 clear
            if [ -d $dir/wascan ];
@@ -470,7 +438,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #setoolkit
-elif [ "$zaki" = "18" ];
+elif [ "$zaki" = "17" ];
 then
 clear
            if [ -d $dir/setoolkit ];
@@ -509,7 +477,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #getsploit
-elif [ "$zaki" = "19" ];
+elif [ "$zaki" = "18" ];
 then
 clear
            if [ -d $dir/getsploit ];
@@ -528,7 +496,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #sudo
-elif [ "$zaki" = "20" ];
+elif [ "$zaki" = "19" ];
 then
 clear
            if [ -e $PREFIX/bin/sudo ];
@@ -551,7 +519,7 @@ echo -n $R" Press" ENTRE to back" "
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #bashrc
-elif [ "$zaki" = "21" ];
+elif [ "$zaki" = "20" ];
 then
 clear
            if [ -e $PREFIX/bin/lolcat ];
@@ -584,7 +552,7 @@ rm -rf $dir/sabri-zaki-banner
 sleep 1
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
 #instahack
-elif [ "$zaki" = "22" ];
+elif [ "$zaki" = "21" ];
 then
 clear
            if [ -e $dir/instahack ];
@@ -601,7 +569,7 @@ git clone https://github.com/fuck3erboy/instahack
 echo -n $R" Press" ENTRE to back" " 
 read ENTRE
 $PREFIX/share/EasY_HaCk/.modules/.Termux_Tools
-elif [ "$zaki" = "23" ];
+elif [ "$zaki" = "22" ];
 then
 clear
            if [ -e $dir/sqlmap ];
