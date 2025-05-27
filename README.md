@@ -11,13 +11,31 @@ this tool is developed by sabri.zaki for penetration testing using
 ## and for exploiting android phones and Windows pcs 
 all that on Termux
 ## Installation
-1. `pkg update`
-2. `pkg upgrade`
-3. `pkg install git`
-4. `git clone https://github.com/sabri-zaki/EasY_HaCk`
-5. `cd EasY_HaCk/`
-6. `chmod +x install.sh`
-7. Type `EasY-HaCk`
+1. ```bash
+   pkg update
+   ```
+2. ```bash
+   pkg upgrade
+   ```
+3. ```bash
+   pkg install git
+   ```
+4. ```bash
+   git clone https://github.com/sabri-zaki/EasY_HaCk
+   ```
+5. ```bash
+   cd EasY_HaCk/
+   ```
+6. ```bash
+   chmod +x install.sh
+   ```
+7. ```bash
+   ./install.sh
+   ```
+8. Type
+   ```bash
+    EasY-HaCk
+   ```
 
 ![](.modules/EasY_HaCk.png)
 
