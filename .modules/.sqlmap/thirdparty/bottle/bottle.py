@@ -921,9 +921,6 @@ class Bottle(object):
         return tob(template(ERROR_PAGE_TEMPLATE, e=res))
 
     def _handle(self, environ):
-        path = environ['bottle.raw_path'] = environ['PATH_INFO']
-        if py3k:
-            environ['PATH_INFO'] = path.encode('latin1').decode('utf8', 'ignore')
 
         def _inner_handle():
             # Maybe pass variables as locals for better performance? 
@@ -951,6 +948,11 @@ class Bottle(object):
             environ['bottle.app'] = self
             request.bind(environ)
             response.bind()
+
+            path = environ['bottle.raw_path'] = environ['PATH_INFO']
+            if py3k:
+                environ['PATH_INFO'] = path.encode('latin1').decode('utf8', 'ignore')
+
             self.trigger_hook('before_request')
             out = _inner_handle()
             return out;
